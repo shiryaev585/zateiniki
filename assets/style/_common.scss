@@ -1,0 +1,48 @@
+html {
+    height: 100%;
+    font-size: .727276vw;
+    width: 100%;
+
+    @include md-down {
+        font-size: 1vw;
+
+        &._hidden {
+            overflow: hidden;
+        }
+    }
+
+    @include sm-down {
+        font-size: 10px;
+    }
+}
+
+body {
+    margin: 0;
+    font-family: $font-main;
+    font-size: 1.6rem;
+    line-height: 1.4;
+    color: $dark-grey;
+    overflow-y: scroll;
+
+    &._locked,
+    &._no-scroll {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    &._no-selection {
+        user-select: none;
+    }
+
+    &._fixed {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+    }
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+}

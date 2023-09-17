@@ -1,0 +1,26 @@
+/* Devices */
+
+$small: 420px;
+$s-tablet: 768px;
+$m-tablet: 1024px;
+$tablet: 1280px;
+$medium: 1440px;
+$large: 99999px;
+
+/* Colors */
+
+$light-grey: #a7a6a6;
+$dark-grey: #3e3e3e;
+$c-black: #171717;
+$soc-hover: #e4bfaa;
+$beige: #e4bfaa;
+
+/* Font */
+
+$font-main: "Roboto", sans-serif;
+
+/* Easing */
+
+$easing: cubic-bezier(0.165, 0.84, 0.44, 1);
+$easeOut: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+$easeText: cubic-bezier(0.165, 0.84, 0.44, 1);
