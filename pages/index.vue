@@ -6,6 +6,12 @@
 <script>
 export default {
     name: 'IndexPage',
+
+    async setup() {
+        const { data } = await useFetch('/api/performances');
+
+        return data;
+    },
 };
 </script>
 <style lang="scss" module>

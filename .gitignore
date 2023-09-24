@@ -6,4 +6,6 @@ node_modules
 .output
 .env
 dist
+build
 .DS_Store
+zateiniki-38f03-firebase-adminsdk-b5biu-2078af9bda.json
