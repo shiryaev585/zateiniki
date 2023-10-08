@@ -1,8 +1,8 @@
 <template>
     <div :class="$style.Layout">
-        <nuxt-link to="/">main</nuxt-link>
+        <!-- <nuxt-link to="/">main</nuxt-link>
         <nuxt-link to="/about">about</nuxt-link>
-        <nuxt-link to="/contacts">contacts</nuxt-link>
+        <nuxt-link to="/contacts">contacts</nuxt-link> -->
         <main id="top">
             <slot></slot>
         </main>

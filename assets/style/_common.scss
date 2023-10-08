@@ -21,8 +21,8 @@ body {
     font-family: $font-main;
     font-size: 1.6rem;
     line-height: 1.4;
-    color: $dark-grey;
-    overflow-y: scroll;
+    color: $dark;
+    overflow-y: auto;
 
     &._locked,
     &._no-scroll {

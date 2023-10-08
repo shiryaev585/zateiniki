@@ -1,28 +1,35 @@
 <template>
-    <div :class="$style.wrp">
-        <div :class="$style.wrp__main">IndexPage</div>
+    <div :class="$style.index">
+        <index-intro />
     </div>
 </template>
 <script>
+import IndexIntro from '~/components/index/IndexIntro.vue';
+
 export default {
     name: 'IndexPage',
 
-    async setup() {
-        const { data } = await useFetch('/api/performances');
+    components: { IndexIntro },
 
-        return data;
+    async setup() {
+        const performances = await useFetch('/api/performances').data;
+        // const videos = await useFetch('/api/videos').data;
+
+        return {
+            performances,
+            // videos
+        };
     },
+
+    computed: {
+        getPath() {
+            return this.videos.videosData[0].url;
+        }
+    }
 };
 </script>
 <style lang="scss" module>
-.wrp {
-    &__main {
-        height: 20vh;
-        background: coral;
-
-        @include lg-down {
-            background: teal;
-        }
-    }
+.index {
+    height: 200vh;
 }
 </style>

@@ -21,6 +21,7 @@
     "sass-loader": "^13.2.2"
   },
   "dependencies": {
-    "firebase-admin": "^11.10.1"
+    "firebase-admin": "^11.10.1",
+    "swiper": "^10.3.0"
   }
 }

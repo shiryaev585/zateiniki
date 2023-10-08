@@ -42,5 +42,10 @@ module.exports = {
         }],
         'vue/multi-word-component-names': 'off',
         'vue/script-setup-no-uses-vars': 'off',
+        'vue/max-attributes-per-line': ['error', {
+            'singleline': {
+                'max': 2
+            },      
+        }]
     },
 };
