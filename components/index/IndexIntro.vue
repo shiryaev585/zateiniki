@@ -3,16 +3,15 @@
         <swiper-container
             :class="$style.slider"
             :centered-slides="true"
-            :free-mode="true"
-            :paralax="true"
+            :parallax="true"
             :breakpoints="{
                 0: {
                     slidesPerView: 2.5,
-                    spaceBetween: 20
+                    spaceBetween: 40
                 },
                 768: {
                     slidesPerView: 3.5,
-                    spaceBetween: 50
+                    spaceBetween: 80
                 }
             }"
             @progress="onProgress"
@@ -54,11 +53,6 @@ export default {
     },
 
     setup() {
-        const onProgress = (e) => {
-            const [swiper, progress] = e.detail;
-            console.log(progress);
-        };
-
         const onSlideChange = (e) => {
             console.log('slide changed');
         };
@@ -66,11 +60,32 @@ export default {
         const images = [image_1, image_2, image_3, image_4];
 
         return {
-            onProgress,
             onSlideChange,
             images
         };
     },
+
+    data() {
+        return {
+            sliderProgress: 0
+        };
+    },
+
+    watch: {
+        sliderProgress() {
+            console.log(this.sliderProgress);
+            if(this.sliderProgress >= 0.85) {
+                console.log('GOAL PUSH');
+            }
+        }
+    },
+
+    methods: {
+        onProgress(e) {
+            const [swiper, progress] = e.detail;
+            this.sliderProgress = progress;
+        }
+    }
 };
 </script>
 
@@ -84,7 +99,7 @@ export default {
 
 .slider {
     height: 100%;
-    width: 110%;
+    width: 120%;
     transform: translateX(-10%) rotate(15deg);
     overflow: visible;
     top: 10vh;
@@ -93,13 +108,13 @@ export default {
 .slide {
     max-height: 75vh;
     overflow: hidden;
-    position: relative;
+    transition: transform 4s $easeText;
 
     &__img {
         position: absolute;
-        width: 100%;
+        width: 300%;
         height: 100%;
-        // left: -75%;
+        left: -40%;
         background-position: 50% 50%;
         background-size: cover;
         background-repeat: no-repeat;
