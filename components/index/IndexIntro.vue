@@ -1,9 +1,34 @@
 <template>
-    <div :class="$style.intro">
+    <div class="intro">
         <swiper-container
-            :class="$style.slider"
+            class="slider-bg"
             :centered-slides="true"
             :parallax="true"
+            :slides-per-view="3.5"
+            :space-between="80"
+            controller-control=".slider-main"
+            @progress="onProgress"
+            @slidechange="onSlideChange"
+        >
+            <swiper-slide
+                v-for="(image, idx) in images"
+                :key="idx"
+                class="slide"
+            >
+                <div
+                    class="slide__img"
+                    data-swiper-parallax="50%"
+                    :style="{ backgroundImage: `url('${image}')` }"
+                >
+                </div>
+            </swiper-slide>
+        </swiper-container>
+
+        <swiper-container
+            class="slider-main"
+            :centered-slides="true"
+            :parallax="true"
+            controller-control=".slider-bg"
             :breakpoints="{
                 0: {
                     slidesPerView: 2.5,
@@ -20,10 +45,10 @@
             <swiper-slide
                 v-for="(image, idx) in images"
                 :key="idx"
-                :class="$style.slide"
+                class="slide"
             >
                 <div
-                    :class="$style.slide__img"
+                    class="slide__img"
                     data-swiper-parallax="50%"
                     :style="{ backgroundImage: `url('${image}')` }"
                 >
@@ -73,7 +98,6 @@ export default {
 
     watch: {
         sliderProgress() {
-            console.log(this.sliderProgress);
             if(this.sliderProgress >= 0.85) {
                 console.log('GOAL PUSH');
             }
@@ -89,7 +113,7 @@ export default {
 };
 </script>
 
-<style lang="scss" module>
+<style lang="scss" scope>
 .intro {
     height: 100vh;
     background: $dark;
@@ -97,12 +121,28 @@ export default {
     overflow: hidden;
 }
 
-.slider {
+.slider-main {
     height: 100%;
     width: 120%;
     transform: translateX(-10%) rotate(15deg);
     overflow: visible;
+    top: -90vh;
+}
+
+.slider-bg {
+    height: 100%;
+    width: 150%;
+    transform: translateX(-10%) rotate(-15deg);
+    overflow: visible;
     top: 10vh;
+    left: -20vw;
+    z-index: 0;
+    opacity: .25;
+    filter: saturate(100) blur(100px);
+
+    & .slide {
+        max-height: 100vh !important;
+    }
 }
 
 .slide {
