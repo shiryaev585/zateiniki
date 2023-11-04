@@ -1,0 +1,11 @@
+.anim-left {
+    &.anim-inner {
+        transform: translateX(-200%);
+        transition: all .35s .35s $easeText;
+    }
+}
+
+.anim-appear {
+    opacity: 0;
+    transition: opacity .8s .35s;
+}

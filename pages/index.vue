@@ -1,5 +1,5 @@
 <template>
-    <div :class="$style.index">
+    <div class="index">
         <index-intro />
     </div>
 </template>
@@ -28,8 +28,9 @@ export default {
     }
 };
 </script>
-<style lang="scss" module>
+
+<style lang="scss" scoped>
 .index {
-    height: 200vh;
+    min-height: 100vh;
 }
 </style>

@@ -1,5 +1,8 @@
 <template>
     <div class="intro">
+        <div v-observe class="intro__text anim-appear">
+            <span class="anim-left anim-inner">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus esse dolore soluta, provident praesentium eligendi distinctio? Perferendis veritatis est officiis.</span>
+        </div>
         <swiper-container
             class="slider-bg"
             :centered-slides="true"
@@ -29,6 +32,7 @@
             :centered-slides="true"
             :parallax="true"
             controller-control=".slider-bg"
+            :mousewheel="true"
             :breakpoints="{
                 0: {
                     slidesPerView: 2.5,
@@ -55,6 +59,14 @@
                 </div>
             </swiper-slide>
         </swiper-container>
+
+        <button
+            v-if="isBtnVisible"
+            v-observe
+            class="btn anim-appear"
+        >
+            Связаться с нами
+        </button>
     </div>
 </template>
 
@@ -92,15 +104,14 @@ export default {
 
     data() {
         return {
-            sliderProgress: 0
+            sliderProgress: 0,
+            isBtnVisible: false
         };
     },
 
     watch: {
         sliderProgress() {
-            if(this.sliderProgress >= 0.85) {
-                console.log('GOAL PUSH');
-            }
+            this.sliderProgress >= 0.85 ? this.isBtnVisible = true : this.isBtnVisible = false;
         }
     },
 
@@ -119,6 +130,23 @@ export default {
     background: $dark;
     color: #fff;
     overflow: hidden;
+    position: relative;
+
+    &__text {
+        position: absolute;
+        top: 10%;
+        left: 10%;
+        width: 20%;
+
+        &.animated {
+            opacity: 1;
+
+            & .anim-inner {
+                display: block;
+                transform: translateX(0%);
+            }
+        }
+    }
 }
 
 .slider-main {
@@ -158,6 +186,16 @@ export default {
         background-position: 50% 50%;
         background-size: cover;
         background-repeat: no-repeat;
+    }
+}
+
+.btn {
+    position: absolute;
+    right: 10%;
+    bottom: 10%;
+
+    &.animated {
+        opacity: 1;
     }
 }
 </style>
