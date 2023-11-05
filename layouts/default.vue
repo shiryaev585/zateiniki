@@ -1,6 +1,7 @@
 <template>
     <div :class="$style.Layout">
         <site-header />
+        <site-menu />
         <main id="top">
             <slot></slot>
         </main>
@@ -9,11 +10,12 @@
 
 <script>
 import SiteHeader from '~/components/default/SiteHeader.vue';
+import SiteMenu from '~/components/default/SiteMenu.vue';
 
 export default {
     name: 'DefaultLayout',
 
-    components: { SiteHeader },
+    components: { SiteHeader, SiteMenu },
 };
 </script>
 
