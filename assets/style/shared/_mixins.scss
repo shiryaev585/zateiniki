@@ -54,3 +54,9 @@
         display: none; // Safari and Chrome
     }
 }
+
+@mixin centered($val) {
+    display: flex;
+    align-items: center;
+    justify-content: $val;
+}

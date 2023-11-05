@@ -1,8 +1,6 @@
 <template>
     <div :class="$style.Layout">
-        <!-- <nuxt-link to="/">main</nuxt-link>
-        <nuxt-link to="/about">about</nuxt-link>
-        <nuxt-link to="/contacts">contacts</nuxt-link> -->
+        <site-header />
         <main id="top">
             <slot></slot>
         </main>
@@ -10,8 +8,12 @@
 </template>
 
 <script>
+import SiteHeader from '~/components/default/SiteHeader.vue';
+
 export default {
     name: 'DefaultLayout',
+
+    components: { SiteHeader },
 };
 </script>
 

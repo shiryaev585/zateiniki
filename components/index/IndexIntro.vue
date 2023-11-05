@@ -1,7 +1,10 @@
 <template>
     <div class="intro">
         <div v-observe class="intro__text anim-appear">
-            <span class="anim-left anim-inner">Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus esse dolore soluta, provident praesentium eligendi distinctio? Perferendis veritatis est officiis.</span>
+            <h1 class="title anim-left anim-inner">
+                Театральная студия Затейники
+            </h1>
+            <span class="anim-left anim-inner">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti esse porro quod aliquid at saepe.</span>
         </div>
         <swiper-container
             class="slider-bg"
@@ -60,13 +63,13 @@
             </swiper-slide>
         </swiper-container>
 
-        <button
+        <ui-btn
             v-if="isBtnVisible"
             v-observe
+            label="Связаться с нами"
             class="btn anim-appear"
-        >
-            Связаться с нами
-        </button>
+            is-light
+        />
     </div>
 </template>
 
@@ -127,14 +130,15 @@ export default {
 <style lang="scss" scope>
 .intro {
     height: 100vh;
-    background: $dark;
+    background: $dark50;
     color: #fff;
     overflow: hidden;
     position: relative;
 
     &__text {
+        font-family: $font-main;
         position: absolute;
-        top: 10%;
+        top: 20%;
         left: 10%;
         width: 20%;
 
@@ -145,6 +149,10 @@ export default {
                 display: block;
                 transform: translateX(0%);
             }
+        }
+
+        & .title {
+            margin-bottom: 2rem;
         }
     }
 }
@@ -193,6 +201,7 @@ export default {
     position: absolute;
     right: 10%;
     bottom: 10%;
+    z-index: 2;
 
     &.animated {
         opacity: 1;

@@ -17,5 +17,6 @@ export default defineNuxtConfig({
     },
     plugins: [
         '~/plugins/observe-directive.js',
+        '~/plugins/global-components.js'
     ]
 });
