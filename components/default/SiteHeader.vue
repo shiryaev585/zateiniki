@@ -1,7 +1,7 @@
 <template>
     <header :class="['header', { _scrolled: isScrolled }]">
         <div class="container header__container">
-            <nuxt-link class="logo" to="/">
+            <nuxt-link class="logo" to="/" @click="headerStore.toggleMenu(false)">
                 Затейники
             </nuxt-link>
             <div :class="['burger', { _open: isMenuOpened }]" @click="toggleMenu">
@@ -39,7 +39,8 @@ export default {
             isScrolled,
             isMenuOpened,
             checkScroll,
-            toggleMenu
+            toggleMenu,
+            headerStore
         };
     },
 
@@ -74,37 +75,10 @@ export default {
 }
 
 .logo {
-    position: relative;
     font-family: $font-second;
     font-size: 5rem;
     line-height: 1.2;
-    background-image: linear-gradient(to right, $box-shadow-color, $box-shadow-color 50%, #fff 50%);
-    background-size: 200% 100%;
-    background-position: -100%;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    transition: all 0.3s $easing;
-
-    &::before {
-        content: '';
-        background: $box-shadow-color;
-        display: block;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0;
-        height: 1px;
-        transition: width 0.3s $easing;
-    }
-
-    &:hover {
-        background-position: 0;
-
-        &::before {
-            width: 100%;
-        }
-    }
+    @include link-hover;
 }
 
 .burger {

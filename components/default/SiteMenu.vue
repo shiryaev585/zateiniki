@@ -1,13 +1,17 @@
 <template>
     <div :class="['menu', { _opened: isMenuOpened }]">
-        <div class="overlay"></div>
+        <div class="overlay" @click="headerStore.toggleMenu(false)"></div>
         <ul class="menu__inner">
             <li
                 v-for="route in menuRoutes"
                 :key="route.id"
                 class="menu__item"
             >
-                <nuxt-link :to="route.path" :class="['menu__link']">
+                <nuxt-link
+                    :to="route.path"
+                    :class="['menu__link']"
+                    @click="headerStore.toggleMenu(false)"
+                >
                     {{ route.name }}
                 </nuxt-link>
             </li>
@@ -44,7 +48,8 @@ export default {
 
         return {
             isMenuOpened,
-            menuRoutes
+            menuRoutes,
+            headerStore
         };
     }
 };
@@ -85,7 +90,8 @@ export default {
         font-size: 1.8rem;
         line-height: 1.2;
         color: #fff;
-        padding: 1rem;
+        padding: 1rem 0;
+        @include link-hover;
     }
 }
 
