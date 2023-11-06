@@ -60,12 +60,15 @@
                 :key="idx"
                 class="slide"
             >
-                <div
-                    class="slide__img"
-                    data-swiper-parallax="50%"
-                    :style="{ backgroundImage: `url('${image}')` }"
-                >
-                </div>
+                <nuxt-link :to="menuRoutes[idx].path">
+                    <span>{{ menuRoutes[idx].name }}</span>
+                    <div
+                        class="slide__img"
+                        data-swiper-parallax="50%"
+                        :style="{ backgroundImage: `url('${image}')` }"
+                    >
+                    </div>
+                </nuxt-link>
             </swiper-slide>
         </swiper-container>
 
@@ -247,6 +250,10 @@ export default {
             width: 120%;
             left: -10%;
         }
+    }
+
+    & span {
+        color: #fff;
     }
 }
 
