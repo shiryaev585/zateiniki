@@ -64,6 +64,11 @@ a {
 }
 
 .container {
-    width: 90%;
-    margin: auto;
+    padding-right: 4rem;
+    padding-left: 4rem;
+
+    @include xs-down {
+        padding-right: 2rem;
+        padding-left: 2rem;
+    }
 }

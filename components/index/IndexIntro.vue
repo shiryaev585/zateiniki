@@ -5,6 +5,12 @@
                 Театральная студия Затейники
             </h1>
             <span class="anim-left anim-inner">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti esse porro quod aliquid at saepe.</span>
+            <ui-btn
+                v-observe
+                label="Связаться с нами"
+                class="btn anim-appear"
+                is-light
+            />
         </div>
         <swiper-container
             class="slider-bg"
@@ -38,10 +44,10 @@
             :mousewheel="true"
             :breakpoints="{
                 0: {
-                    slidesPerView: 2.5,
-                    spaceBetween: 40
+                    slidesPerView: 1,
+                    spaceBetween: 0
                 },
-                768: {
+                1025: {
                     slidesPerView: 3.5,
                     spaceBetween: 80
                 }
@@ -63,13 +69,13 @@
             </swiper-slide>
         </swiper-container>
 
-        <ui-btn
+        <div
             v-if="isBtnVisible"
             v-observe
-            label="Связаться с нами"
-            class="btn anim-appear"
-            is-light
-        />
+            class="text-2 anim-appear"
+        >
+            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia odit dolorem culpa cum ut in praesentium, quod consequuntur blanditiis dolore!</span>
+        </div>
     </div>
 </template>
 
@@ -142,6 +148,22 @@ export default {
         left: 10%;
         width: 20%;
 
+        @include sm-down {
+            width: 40%;
+            text-align: center;
+            z-index: 2;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        @include xs-down {
+            text-align: left;
+            width: 90%;
+            top: 25%;
+            left: 2rem;
+            transform: none;
+        }
+
         &.animated {
             opacity: 1;
 
@@ -154,6 +176,23 @@ export default {
         & .title {
             margin-bottom: 2rem;
         }
+
+        & span {
+            margin-bottom: 8rem;
+
+            @include sm-down {
+                margin-bottom: 4rem;
+            }
+        }
+
+        & .btn {
+            position: relative;
+            z-index: 2;
+
+            &.animated {
+                opacity: 1;
+            }
+        }
     }
 }
 
@@ -162,7 +201,16 @@ export default {
     width: 120%;
     transform: translateX(-10%) rotate(15deg);
     overflow: visible;
-    top: -90vh;
+    top: -88vh;
+
+    @include sm-down {
+        transform: translateX(-10%);
+        top: calc(-100vh + 8rem);
+    }
+
+    @include xss-down {
+        top: calc(-100vh + 6rem);
+    }
 }
 
 .slider-bg {
@@ -194,14 +242,27 @@ export default {
         background-position: 50% 50%;
         background-size: cover;
         background-repeat: no-repeat;
+
+        @include sm-down {
+            width: 120%;
+            left: -10%;
+        }
     }
 }
 
-.btn {
+.text-2 {
     position: absolute;
     right: 10%;
     bottom: 10%;
     z-index: 2;
+    width: 20%;
+
+    @include sm-down {
+        right: 50%;
+        bottom: 5%;
+        transform: translateX(50%);
+        width: 90%;
+    }
 
     &.animated {
         opacity: 1;

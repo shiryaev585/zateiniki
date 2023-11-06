@@ -57,7 +57,7 @@ export default {
 
 <style lang="scss" scoped>
 .menu {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -71,6 +71,16 @@ export default {
 
         & .menu__inner {
             width: 20%;
+
+            @include sm-down {
+                width: 50%;
+                align-items: flex-start;
+                padding-left: 4rem;
+            }
+
+            @include xs-down {
+                width: 70%;
+            }
         }
     }
 

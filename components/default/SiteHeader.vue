@@ -1,7 +1,11 @@
 <template>
     <header :class="['header', { _scrolled: isScrolled }]">
         <div class="container header__container">
-            <nuxt-link class="logo" to="/" @click="headerStore.toggleMenu(false)">
+            <nuxt-link
+                class="logo"
+                to="/"
+                @click="headerStore.toggleMenu(false)"
+            >
                 Затейники
             </nuxt-link>
             <div :class="['burger', { _open: isMenuOpened }]" @click="toggleMenu">
@@ -66,7 +70,11 @@ export default {
 
     &__container {
         @include centered(space-between);
-        padding: 2rem 0;
+        height: 8rem;
+
+        @include xss-down {
+            height: 6rem;
+        }
     }
 
     &._scrolled {
@@ -79,6 +87,10 @@ export default {
     font-size: 5rem;
     line-height: 1.2;
     @include link-hover;
+
+    @include xss-down {
+        font-size: 3rem;
+    }
 }
 
 .burger {
