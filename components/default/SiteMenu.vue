@@ -21,18 +21,28 @@
 
 <script>
 import { useHeaderStore } from '~/stores/header';
+import { useGlobalStore } from '~/stores/global';
 
 export default {
     name: 'SiteMenu',
 
     setup() {
         const headerStore = useHeaderStore();
+        const globalStore = useGlobalStore();
+
         const isMenuOpened = computed(() => headerStore.isMenuOpened);
 
         return {
             isMenuOpened,
-            headerStore
+            headerStore,
+            globalStore
         };
+    },
+
+    watch: {
+        isMenuOpened() {
+            this.globalStore.toggleBodyLocked();
+        }
     }
 };
 </script>

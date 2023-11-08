@@ -59,7 +59,7 @@ export default {
     &:hover {
         background: $box-shadow-color;
         color: #fff;
-        border: 1px solid #fff;
+        border: 1px solid $box-shadow-color;
         box-shadow: 0 0 5px $box-shadow-color, 0 0 25px $box-shadow-color, 0 0 50px $box-shadow-color, 0 0 100px $box-shadow-color;
     }
 }

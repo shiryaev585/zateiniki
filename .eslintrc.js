@@ -46,6 +46,14 @@ module.exports = {
             'singleline': {
                 'max': 2
             },      
+        }],
+        'vue/max-attributes-per-line': ['error', {
+            'singleline': {
+                'max': 6
+            },      
+            'multiline': {
+                'max': 1
+            }
         }]
     },
 };

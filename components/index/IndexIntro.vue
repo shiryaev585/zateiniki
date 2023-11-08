@@ -10,6 +10,7 @@
                 label="Связаться с нами"
                 class="btn anim-appear"
                 is-light
+                @click="globalStore.toggleModal(true)"
             />
         </div>
         <swiper-container
@@ -73,7 +74,7 @@
         </swiper-container>
 
         <div
-            v-if="isBtnVisible"
+            v-if="isBlockVisible"
             v-observe
             class="text-2 anim-appear"
         >
@@ -88,6 +89,7 @@ import image_1 from '~/assets/images/index/intro_1.jpg';
 import image_2 from '~/assets/images/index/intro_2.jpg';
 import image_3 from '~/assets/images/index/intro_3.jpg';
 import image_4 from '~/assets/images/index/intro_4.jpg';
+import { useGlobalStore } from '~/stores/global';
 
 register();
 
@@ -102,28 +104,27 @@ export default {
     },
 
     setup() {
-        const onSlideChange = (e) => {
-            console.log('slide changed');
-        };
-
         const images = [image_1, image_2, image_3, image_4];
+        const globalStore = useGlobalStore();
+        const isModal = computed(() => globalStore.isModal);
 
         return {
-            onSlideChange,
-            images
+            images,
+            globalStore,
+            isModal
         };
     },
 
     data() {
         return {
             sliderProgress: 0,
-            isBtnVisible: false
+            isBlockVisible: false
         };
     },
 
     watch: {
         sliderProgress() {
-            this.sliderProgress >= 0.85 ? this.isBtnVisible = true : this.isBtnVisible = false;
+            this.sliderProgress >= 0.85 ? this.isBlockVisible = true : this.isBlockVisible = false;
         }
     },
 
@@ -131,7 +132,7 @@ export default {
         onProgress(e) {
             const [swiper, progress] = e.detail;
             this.sliderProgress = progress;
-        }
+        },
     }
 };
 </script>
