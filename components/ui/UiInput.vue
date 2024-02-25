@@ -101,7 +101,8 @@ export default {
 
 .input {
     padding: 1rem 0;
-    border-bottom: 1px solid $grey;
+    border-bottom: 1px solid $dark;
     font-size: 1.5rem;
+    background: transparent;
 }
 </style>

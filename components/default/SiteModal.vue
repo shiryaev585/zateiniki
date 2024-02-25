@@ -2,8 +2,8 @@
     <div :class="['modal', { _visible: isModal }]">
         <button class="close" @click="globalStore.toggleModal(false)">
             <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none">
-                <rect x="21.5859" y="7.44336" width="20" height="1.05263" transform="rotate(135 21.5859 7.44336)" fill="#5D6C7B" />
-                <rect x="20.5078" y="21.9204" width="20" height="0.999999" transform="rotate(-135 20.5078 21.9204)" fill="#5D6C7B" />
+                <rect x="21.5859" y="7.44336" width="20" height="1.05263" transform="rotate(135 21.5859 7.44336)" fill="#171717" />
+                <rect x="20.5078" y="21.9204" width="20" height="0.999999" transform="rotate(-135 20.5078 21.9204)" fill="#171717" />
             </svg>
         </button>
         <div class="container form-container">
@@ -20,14 +20,14 @@
                         @input="$emit('input', $event)"
                         @change="$emit('change', $event)"
                     />
-                    <ui-input
+                    <!-- <ui-input
                         name="Email"
                         type="email"
                         label="Email"
                         required
                         @input="$emit('input', $event)"
                         @change="$emit('change', $event)"
-                    />
+                    /> -->
                     <ui-input
                         name="Телефон"
                         type="tel"
@@ -57,15 +57,33 @@ export default {
         const globalStore = useGlobalStore();
         const isModal = computed(() => globalStore.isModal);
 
+        const data = {
+            name: 'John',
+            email: 'some@mail.com',
+            phone: '+78887776655',
+            message: 'Hello!'
+        };
+
+        const test = async () => {
+            console.log('test');
+            const res = await $fetch( '/api/request', {
+                method: 'POST',
+                body: data
+            });
+            console.log('res', res);
+        };
+
         return {
             globalStore,
-            isModal
+            isModal,
+            test
         };
     },
 
     methods: {
         submit() {
-            console.log('submit');
+            console.log('submit', this.isModal);
+            this.test();
         }
     }
 };
@@ -78,7 +96,8 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
-    background: #fff;
+    // background: #fff;
+    background-image: linear-gradient(to right, #00ccb9, #5640d3 100%);
     z-index: 10;
     transition: top .75s $easing;
 

@@ -11,8 +11,8 @@ if (!apps.length) {
 
 export default async (req, res) => {
     const db = getFirestore();
-    const videosSnap = await db.collection('videos').get();
-    const videosData = videosSnap.docs.map((dock) => {
+    const requestSnap = await db.collection('request').get();
+    const requestData = requestSnap.docs.map((dock) => {
         return {
             uuid: dock.id,
             ...dock.data()
@@ -20,6 +20,6 @@ export default async (req, res) => {
     });
 
     return {
-        videosData
+        requestData
     };
 };

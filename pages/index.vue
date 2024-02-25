@@ -13,19 +13,13 @@ export default {
 
     async setup() {
         const performances = await useFetch('/api/performances').data;
-        // const videos = await useFetch('/api/videos').data;
+        // const requests = await useFetch('/api/request').data;
 
         return {
             performances,
-            // videos
+            // requests
         };
     },
-
-    computed: {
-        getPath() {
-            return this.videos.videosData[0].url;
-        }
-    }
 };
 </script>
 
