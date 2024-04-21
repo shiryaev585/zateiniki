@@ -21,7 +21,6 @@
             :space-between="80"
             controller-control=".slider-main"
             @progress="onProgress"
-            @slidechange="onSlideChange"
         >
             <swiper-slide
                 v-for="(image, idx) in images"
@@ -54,7 +53,6 @@
                 }
             }"
             @progress="onProgress"
-            @slidechange="onSlideChange"
         >
             <swiper-slide
                 v-for="(image, idx) in images"
@@ -95,7 +93,6 @@ register();
 
 export default {
     name: 'IndexIntro',
-
     props: {
         performances: {
             type: Array,

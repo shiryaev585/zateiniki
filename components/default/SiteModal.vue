@@ -13,28 +13,28 @@
             <form class="form" @submit.prevent="submit()">
                 <div class="inputs">
                     <ui-input
+                        v-model="form.name"
                         name="Имя"
                         type="text"
                         label="Имя"
                         required
-                        @input="$emit('input', $event)"
-                        @change="$emit('change', $event)"
+                        @input="form.name = $event.target.value"
                     />
-                    <!-- <ui-input
+                    <ui-input
+                        v-model="form.email"
                         name="Email"
                         type="email"
                         label="Email"
                         required
-                        @input="$emit('input', $event)"
-                        @change="$emit('change', $event)"
-                    /> -->
+                        @input="form.email = $event.target.value"
+                    />
                     <ui-input
+                        v-model="form.phone"
                         name="Телефон"
                         type="tel"
                         label="Телефон"
                         required
-                        @input="$emit('input', $event)"
-                        @change="$emit('change', $event)"
+                        @input="form.phone = $event.target.value"
                     />
                 </div>
                 <ui-btn
@@ -53,37 +53,37 @@ import { useGlobalStore } from '~/stores/global';
 export default {
     name: 'SiteModal',
 
-    setup() {
+    async setup() {
         const globalStore = useGlobalStore();
         const isModal = computed(() => globalStore.isModal);
-
-        const data = {
-            name: 'John',
-            email: 'some@mail.com',
-            phone: '+78887776655',
-            message: 'Hello!'
-        };
-
-        const test = async () => {
-            console.log('test');
-            const res = await $fetch( '/api/request', {
-                method: 'POST',
-                body: data
-            });
-            console.log('res', res);
-        };
+        const form = reactive({});
 
         return {
             globalStore,
             isModal,
-            test
+            form
         };
     },
 
     methods: {
-        submit() {
-            console.log('submit', this.isModal);
-            this.test();
+        async submit() {
+            const formData = new FormData();
+            formData.append('name', this.form?.name);
+            formData.append('email', this.form?.email);
+            formData.append('phone', this.form?.phone);
+            try {
+                const res = await fetch(this.$config.public.requestUrl, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { Accept: 'application/json' },
+                });
+                console.log('res', res);
+                if (res.ok) {
+                    console.log('res ok');
+                }
+            } catch (e) {
+                console.error(e);
+            }
         }
     }
 };

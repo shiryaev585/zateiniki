@@ -22,5 +22,9 @@ export default defineNuxtConfig({
     modules: [
         '@pinia/nuxt'
     ],
-
+    runtimeConfig: {
+        public: {
+            requestUrl: process.env.REQUEST_URL,
+        }
+    },
 });
