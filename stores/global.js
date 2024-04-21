@@ -3,7 +3,8 @@ import { defineStore } from 'pinia';
 export const useGlobalStore = defineStore('global', {
     state: () => ({
         isBodyLocked: false,
-        isModal: false
+        isModal: false,
+        showPreloader: false,
     }),
 
     actions: {
@@ -17,6 +18,10 @@ export const useGlobalStore = defineStore('global', {
 
         toggleModal(payload) {
             this.isModal = payload;
+        },
+
+        togglePreloader(payload) {
+            this.showPreloader = payload;
         }
     },
 });

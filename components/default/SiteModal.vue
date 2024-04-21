@@ -8,7 +8,7 @@
         </button>
         <div class="container form-container">
             <h2 class="title">
-                Напишите нам
+                Закажите звонок
             </h2>
             <form class="form" @submit.prevent="submit()">
                 <div class="inputs">
@@ -17,13 +17,6 @@
                         name="name"
                         type="text"
                         label="Имя*"
-                        required
-                    />
-                    <ui-input
-                        v-model="form.email"
-                        name="email"
-                        type="email"
-                        label="Email*"
                         required
                     />
                     <ui-input
@@ -66,20 +59,23 @@ export default {
         async submit() {
             const formData = new FormData();
             formData.append('name', this.form?.name);
-            formData.append('email', this.form?.email);
             formData.append('phone', this.form?.phone);
+            this.globalStore.togglePreloader(true);
             try {
                 const res = await fetch(this.$config.public.requestUrl, {
                     method: 'POST',
                     body: formData,
                     headers: { Accept: 'application/json' },
                 });
-                console.log('res', res);
+                this.form.name = '';
+                this.form.phone = '';
                 if (res.ok) {
-                    console.log('res ok');
+                    this.globalStore.toggleModal(false);
                 }
             } catch (e) {
                 console.error(e);
+            } finally {
+                this.globalStore.togglePreloader(false);
             }
         }
     }
@@ -93,7 +89,6 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
-    // background: #fff;
     background-image: linear-gradient(to right, #00ccb9, #5640d3 100%);
     z-index: 10;
     transition: top .75s $easing;
