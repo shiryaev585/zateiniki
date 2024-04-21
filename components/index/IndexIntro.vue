@@ -72,7 +72,7 @@
         </swiper-container>
 
         <div
-            v-if="isBlockVisible"
+            v-if="sliderProgress === 1"
             v-observe
             class="text-2 anim-appear"
         >
@@ -93,36 +93,19 @@ register();
 
 export default {
     name: 'IndexIntro',
-    props: {
-        performances: {
-            type: Array,
-            default: () => []
-        }
-    },
 
     setup() {
         const images = [image_1, image_2, image_3, image_4];
         const globalStore = useGlobalStore();
         const isModal = computed(() => globalStore.isModal);
+        const sliderProgress = ref(0);
 
         return {
             images,
             globalStore,
-            isModal
+            isModal,
+            sliderProgress
         };
-    },
-
-    data() {
-        return {
-            sliderProgress: 0,
-            isBlockVisible: false
-        };
-    },
-
-    watch: {
-        sliderProgress() {
-            this.sliderProgress >= 0.85 ? this.isBlockVisible = true : this.isBlockVisible = false;
-        }
     },
 
     methods: {

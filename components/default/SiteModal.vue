@@ -14,27 +14,24 @@
                 <div class="inputs">
                     <ui-input
                         v-model="form.name"
-                        name="Имя"
+                        name="name"
                         type="text"
-                        label="Имя"
+                        label="Имя*"
                         required
-                        @input="form.name = $event.target.value"
                     />
                     <ui-input
                         v-model="form.email"
-                        name="Email"
+                        name="email"
                         type="email"
-                        label="Email"
+                        label="Email*"
                         required
-                        @input="form.email = $event.target.value"
                     />
                     <ui-input
                         v-model="form.phone"
-                        name="Телефон"
+                        name="phone"
                         type="tel"
-                        label="Телефон"
+                        label="Телефон*"
                         required
-                        @input="form.phone = $event.target.value"
                     />
                 </div>
                 <ui-btn

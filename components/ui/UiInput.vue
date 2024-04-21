@@ -1,9 +1,8 @@
 <template>
-    <div :class="['ui-input', { _focused: focused, _filled: value }]">
+    <div :class="['ui-input', { _focused: focused, _filled: modelValue }]">
         <label for="input" class="label">{{ label }}</label>
         <input 
-            :id="name"
-            v-model="value"
+            :value="modelValue"
             :name="name"
             :disabled="disabled"
             :required="required"
@@ -11,60 +10,49 @@
             :type="type"
             @focus="focused = true"
             @blur="focused = false"
+            @input="$emit('update:modelValue', $event.target.value)"
         />
     </div>
 </template>
 
-<script>
-export default {
-    name: 'UiInput',
+<script setup>
+defineEmits(['update:modelValue']);
+defineProps({
+    label: {
+        type: String,
+        default: ''
+    },
+    name: {
+        type: String,
+        default: ''
+    },
 
-    props: {
-        label: {
-            type: String,
-            default: ''
-        },
+    type: {
+        type: String,
+        default: ''
+    },
 
-        name: {
-            type: String,
-            default: ''
-        },
+    modelValue: {
+        type: [String, Number],
+        default: null
+    },
 
-        type: {
-            type: String,
-            default: ''
-        },
+    disabled: {
+        type: Boolean,
+        default: false
+    },
 
-        initialValue: {
-            type: [String, Number],
-            default: null
-        },
-
-        disabled: {
-            type: Boolean,
-            default: false
-        },
-
-        required: {
-            type: Boolean,
-            default: false
-        },
+    required: {
+        type: Boolean,
+        default: false
+    },
         
-        errors: {
-            type: Array,
-            default: () => []
-        }
-    },
-
-    data() {
-        return {
-            focused: false,
-            filled: false,
-            value: ''
-        };
-    },
-
-};
+    errors: {
+        type: Array,
+        default: () => []
+    }
+});
+const focused = ref(false);
 </script>
 
 <style lang="scss" scoped>
