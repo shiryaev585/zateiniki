@@ -86,7 +86,6 @@ import { register } from 'swiper/element/bundle';
 import image_1 from '~/assets/images/index/intro_1.jpg';
 import image_2 from '~/assets/images/index/intro_2.jpg';
 import image_3 from '~/assets/images/index/intro_3.jpg';
-import image_4 from '~/assets/images/index/intro_4.jpg';
 import { useGlobalStore } from '~/stores/global';
 
 register();
@@ -95,7 +94,7 @@ export default {
     name: 'IndexIntro',
 
     setup() {
-        const images = [image_1, image_2, image_3, image_4];
+        const images = [image_1, image_2, image_3];
         const globalStore = useGlobalStore();
         const isModal = computed(() => globalStore.isModal);
         const sliderProgress = ref(0);

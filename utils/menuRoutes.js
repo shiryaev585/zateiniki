@@ -11,11 +11,6 @@ export const menuRoutes = [
     },
     {
         id: 3,
-        name: 'Видео',
-        path: '/videos'
-    },
-    {
-        id: 4,
         name: 'Контакты',
         path: '/contacts'
     }
