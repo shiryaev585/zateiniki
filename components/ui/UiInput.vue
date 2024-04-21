@@ -2,10 +2,12 @@
     <div :class="['ui-input', { _focused: focused, _filled: modelValue }]">
         <label for="input" class="label">{{ label }}</label>
         <input 
+            v-maska
             :value="modelValue"
             :name="name"
             :disabled="disabled"
             :required="required"
+            :data-maska="maskData"
             class="input"
             :type="type"
             @focus="focused = true"
@@ -48,9 +50,9 @@ defineProps({
         default: false
     },
         
-    errors: {
-        type: Array,
-        default: () => []
+    maskData: {
+        type: String,
+        default: ''
     }
 });
 const focused = ref(false);

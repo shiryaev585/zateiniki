@@ -21,6 +21,7 @@
                     />
                     <ui-input
                         v-model="form.phone"
+                        mask-data="+7 (###) ###-##-##"
                         name="phone"
                         type="tel"
                         label="Телефон*"
