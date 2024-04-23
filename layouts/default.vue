@@ -42,5 +42,7 @@ export default {
 .Layout {
     position: relative;
     min-height: 100vh;
+    background: rgb(97,108,162);
+    background: linear-gradient(90deg, rgba(97,108,162,1) 0%, rgba(38,36,77,1) 100%);
 }
 </style>

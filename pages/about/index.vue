@@ -1,16 +1,14 @@
 <template>
     <div class="about-page">
-        AboutPage
+        <intro-block title="О нас" :src="src" />
     </div>
 </template>
-<script>
-export default {
-    name: 'AboutPage',
-};
+<script setup>
+import IntroBlock from '~/components/blocks/IntroBlock.vue';
+import src from '~/assets/images/index/intro_1.jpg';
 </script>
 <style lang="scss" scoped>
 .about-page {
     height: 300vh;
-    background: coral;
 }
 </style>
