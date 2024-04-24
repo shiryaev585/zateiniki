@@ -41,6 +41,10 @@ export default {
         font-size: 13rem;
         letter-spacing: 2rem;
         transition: top 2s .5s;
+
+        @include xs-down {
+            font-size: 10rem;
+        }
     }
 
     & .bg {
