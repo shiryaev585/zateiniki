@@ -1,6 +1,6 @@
 <template>
     <div v-if="showPreloader" class="loader">
-        <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+        <div :class="['lds-ellipsis', { 'light-ellipsis': isLight }]"><div></div><div></div><div></div><div></div></div>
     </div>
 </template>
 
@@ -10,6 +10,11 @@ export default {
 
     props: {
         showPreloader: {
+            type: Boolean,
+            default: false
+        },
+
+        isLight: {
             type: Boolean,
             default: false
         }
@@ -29,7 +34,11 @@ export default {
 
 .lds-ellipsis {
     /* change color here */
-    color: #1c4c5b
+    color: #1c4c5b;
+
+    &.light-ellipsis {
+        color: $light-grey;
+    }
 }
 
 .lds-ellipsis,

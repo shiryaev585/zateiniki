@@ -1,18 +1,19 @@
 <template>
-    <div v-observe class="contact-block container">
+    <div class="contact-block container">
+        <site-preloader :show-preloader="showPreloader" is-light />
         <div class="info">
-            <div class="info-box">
+            <div v-observe class="info-box anim-appear delay-1">
                 <span class="label">Телефон</span>
                 <a href="tel:+79031231212" class="value">+7(903)123-12-12</a>
             </div>
-            <div class="info-box">
+            <div v-observe class="info-box anim-appear delay-3">
                 <span class="label">Email</span>
                 <a href="mailto:zateiniki@mail.ru" class="value">zateiniki@mail.ru</a>
             </div>
         </div>
 
-        <form class="form" @submit.prevent="submit">
-            <h3>Оставьте Ваши контакты и мы Вам перезвоним</h3>
+        <form v-observe class="form anim-appear delay-5" @submit.prevent="submit">
+            <h3 class="form__subtitle">Оставьте Ваши контакты и мы Вам перезвоним</h3>
             <div class="inputs">
                 <ui-input
                     v-model="form.name"
@@ -20,6 +21,7 @@
                     type="text"
                     label="Имя*"
                     required
+                    is-light
                 />
                 <ui-input
                     v-model="form.phone"
@@ -28,11 +30,12 @@
                     type="tel"
                     label="Телефон*"
                     required
+                    is-light
                 />
             </div>
             <ui-btn
                 label="Связаться с нами"
-                class="btn anim-appear"
+                class="btn"
                 is-light
             />
         </form>
@@ -40,18 +43,44 @@
 </template>
 
 <script>
+import SitePreloader from '~/components/default/SitePreloader.vue';
+
 export default {
     name: 'ContactBlock',
 
-    data() {
+    components: {
+        SitePreloader
+    },
+
+    async setup() {
+        const form = reactive({});
+        const showPreloader = ref(false);
+
         return {
-            form: {}
+            form,
+            showPreloader
         };
     },
 
     methods: {
-        submit() {
-            console.log('submit');
+        async submit() {
+            const formData = new FormData();
+            formData.append('name', this.form?.name);
+            formData.append('phone', this.form?.phone);
+            this.showPreloader = true;
+            try {
+                await fetch(this.$config.public.requestUrl, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { Accept: 'application/json' },
+                });
+                this.form.name = '';
+                this.form.phone = '';
+            } catch (e) {
+                console.error(e);
+            } finally {
+                this.showPreloader = false;
+            }
         }
     }
 };
@@ -59,8 +88,9 @@ export default {
 
 <style lang="scss" scoped>
 .contact-block {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
+    position: relative;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
     @include centered(center);
     gap: 20%;
 }
@@ -71,7 +101,7 @@ export default {
 }
 
 .label, .value {
-    color: $grey;
+    color: $light-grey;
     padding: 1rem 0;
 }
 
@@ -84,6 +114,17 @@ export default {
 }
 
 .form {
-    color: $grey;
+    color: $light-grey;
+
+    &__subtitle {
+        margin-bottom: 4rem;
+    }
+
+    & .inputs {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        margin-bottom: 4rem;
+    }
 }
 </style>

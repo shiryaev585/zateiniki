@@ -1,5 +1,5 @@
 <template>
-    <div :class="['ui-input', { _focused: focused, _filled: modelValue }]">
+    <div :class="['ui-input', { _focused: focused, _filled: modelValue, _light: isLight }]">
         <label for="input" class="label">{{ label }}</label>
         <input 
             v-maska
@@ -53,6 +53,11 @@ defineProps({
     maskData: {
         type: String,
         default: ''
+    },
+
+    isLight: {
+        type: Boolean,
+        default: false
     }
 });
 const focused = ref(false);
@@ -95,5 +100,16 @@ const focused = ref(false);
     border-bottom: 1px solid $dark;
     font-size: 1.5rem;
     background: transparent;
+}
+
+._light {
+    & .label {
+        color: $light-grey;
+    }
+
+    & .input {
+        border-bottom: 1px solid $light-grey;
+        color: $light-grey;
+    }
 }
 </style>

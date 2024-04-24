@@ -1,6 +1,6 @@
 <template>
     <div class="intro">
-        <div v-observe class="intro__text anim-appear">
+        <div v-observe class="intro__text anim-appear duration-4">
             <h1 class="title anim-left anim-inner">
                 Театральная студия Затейники
             </h1>

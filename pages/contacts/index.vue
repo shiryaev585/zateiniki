@@ -15,8 +15,4 @@ import src from '~/assets/images/index/intro_3.jpg';
 .page {
     height: 300vh;
 }
-
-.next-block {
-    
-}
 </style>
