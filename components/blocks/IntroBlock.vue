@@ -44,6 +44,7 @@ export default {
 
         @include xs-down {
             font-size: 10rem;
+            letter-spacing: 1rem;
         }
     }
 

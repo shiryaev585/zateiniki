@@ -1,7 +1,10 @@
 <template>
     <div class="contact-block container">
         <site-preloader :show-preloader="showPreloader" is-light />
-        <div class="info">
+        <h2 v-if="title" v-observe class="contact-block__title anim-appear delay-1">
+            {{ title }}
+        </h2>
+        <div v-else class="info">
             <div v-observe class="info-box anim-appear delay-1">
                 <span class="label">Телефон</span>
                 <a href="tel:+79031231212" class="value">+7(903)123-12-12</a>
@@ -68,6 +71,13 @@ export default {
         SitePreloader
     },
 
+    props: {
+        title: {
+            type: String,
+            default: ''
+        }
+    },
+
     async setup() {
         const form = reactive({});
         const showPreloader = ref(false);
@@ -118,6 +128,19 @@ export default {
 
     @include sm-down {
         flex-direction: column;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+
+    &__title {
+        flex: 1;
+        @include centered(center);
+        color: $light-grey;
+        font-size: 5rem;
+
+        @include xs-down {
+            font-size: 3rem;
+        }
     }
 }
 
@@ -130,6 +153,14 @@ export default {
         flex-direction: row;
         width: 70%;
         justify-content: space-between;
+    }
+
+    @include xs-down {
+        width: 95%;
+    }
+
+    @include xss-down {
+        width: 100%;
     }
 
     &-box {
@@ -145,10 +176,18 @@ export default {
 
 .label {
     font-size: 1.4rem;
+
+    @include xss-down {
+        font-size: 1.2rem;
+    }
 }
 
 .value {
     font-size: 2.4rem;
+
+    @include xss-down {
+        font-size: 1.8rem;
+    }
 }
 
 .form, .success {
@@ -163,6 +202,15 @@ export default {
 .form {
     @include sm-down {
         width: 70%;
+        margin-top: 1rem;
+    }
+
+    @include xs-down {
+        width: 95%;
+    }
+
+    @include xss-down {
+        width: 100%;
     }
 
     &__subtitle {
