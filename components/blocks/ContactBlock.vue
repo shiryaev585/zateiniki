@@ -7,11 +7,11 @@
         <div v-else class="info">
             <div v-observe class="info-box anim-appear delay-1">
                 <span class="label">Телефон</span>
-                <a href="tel:+79031231212" class="value">+7(903)123-12-12</a>
+                <a :href="phoneHref" class="value">{{ contacts.phone.value }}</a>
             </div>
             <div v-observe class="info-box anim-appear delay-3">
                 <span class="label">Email</span>
-                <a href="mailto:zateiniki@mail.ru" class="value">zateiniki@mail.ru</a>
+                <a :href="emailHref" class="value">{{ contacts.email.value }}</a>
             </div>
         </div>
 
@@ -82,11 +82,15 @@ export default {
         const form = reactive({});
         const showPreloader = ref(false);
         const success = ref(false);
+        const phoneHref = computed(() => contacts.phone.type + contacts.phone.value?.replace(/(\()|(\)|(-))/g, ''));
+        const emailHref = computed(() => contacts.email.type + contacts.email.value);
 
         return {
             form,
             showPreloader,
-            success
+            success,
+            phoneHref,
+            emailHref
         };
     },
 
@@ -184,6 +188,11 @@ export default {
 
 .value {
     font-size: 2.4rem;
+    transition: opacity .3s;
+
+    &:hover {
+        opacity: .6;
+    }
 
     @include xss-down {
         font-size: 1.8rem;

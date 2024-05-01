@@ -26,7 +26,14 @@
                         class="item"
                     >
                         <a
-                            v-if="contact.type"
+                            v-if="contact.type === 'tel:'"
+                            :href="contact.type + contact.value?.replace(/(\()|(\)|(-))/g, '')"
+                            class="item__link"
+                        >
+                            {{ contact.value }}
+                        </a>
+                        <a
+                            v-else-if="contact.type"
                             :href="contact.type + contact.value"
                             class="item__link"
                         >
