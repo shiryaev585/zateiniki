@@ -1,6 +1,6 @@
 <template>
     <div v-observe class="intro-block">
-        <img class="bg" :src="src" alt="background-image" />
+        <nuxt-img class="bg" :src="src" alt="background-image" />
         <h1 class="intro-block__title anim-appear">
             {{ title }}
         </h1>

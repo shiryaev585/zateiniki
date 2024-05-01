@@ -1,12 +1,11 @@
 <template>
     <div class="performances-page">
-        <intro-block title="Спектакли" :src="src" />
+        <intro-block title="Спектакли" src="/images/index/intro_2.jpg" />
     </div>
 </template>
 <script setup>
 import { useFooterStore } from '~/stores/footer';
 import IntroBlock from '~/components/blocks/IntroBlock.vue';
-import src from '~/assets/images/index/intro_2.jpg';
 
 const footerStore = useFooterStore();
 
