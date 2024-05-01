@@ -1,0 +1,16 @@
+export const contacts = {
+    phone: {
+        value: '+7(903)123-12-12',
+        type: 'tel:'
+    },
+    email: {
+        value: 'zateiniki@mail.ru',
+        type: 'mailto:'
+    },
+    address: {
+        value: 'г.Москва, Люблинская улица, 167',
+        href: 'https://yandex.ru/maps/213/moscow/?indoorLevel=1&ll=37.750113%2C55.648236&mode=routes&rtext=55.649896%2C37.747539&rtt=auto&ruri=&z=14.8'
+    },
+    coords: [55.649809, 37.747415]
+};
+

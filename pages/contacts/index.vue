@@ -6,13 +6,14 @@
 </template>
 
 <script setup>
+import { useFooterStore } from '~/stores/footer';
 import IntroBlock from '~/components/blocks/IntroBlock.vue';
 import ContactBlock from '~/components/blocks/ContactBlock.vue';
 import src from '~/assets/images/index/intro_3.jpg';
-</script>
 
-<style lang="scss" scoped>
-.page {
-    height: 300vh;
-}
-</style>
+const footerStore = useFooterStore();
+
+onMounted(() => {
+    footerStore.setFooter(true);
+});
+</script>
