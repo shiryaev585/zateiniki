@@ -63,7 +63,7 @@ export default {
             formData.append('phone', this.form?.phone);
             this.globalStore.togglePreloader(true);
             try {
-                const res = await fetch(this.$config.public.requestUrl, {
+                const res = await fetch(this.$config?.public?.requestUrl, {
                     method: 'POST',
                     body: formData,
                     headers: { Accept: 'application/json' },

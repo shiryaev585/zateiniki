@@ -39,16 +39,27 @@
                         >
                             {{ contact.value }}
                         </a>
-                        <a
-                            v-else
-                            :href="contact.href"
-                            class="item__link"
-                            target="_blanc"
-                        >
-                            {{ contact.value }}
-                        </a>
+                        <span v-else class="item__inner">{{ contact.value }}</span>
                     </li>
                 </ul>
+            </div>
+            <div class="footer__route">
+                <a :href="contacts?.address?.href" target="_blanc">
+                    <span>Проложить маршрут</span>
+                    <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g>
+                            <circle cx="15.8184" cy="16.3609" r="15" />
+                            <path
+                                d="M12.251 16.4423L11.1609 18.3304C10.564 19.3643 10.9182 20.6863 11.9521 21.2833V21.2833C12.986 21.8802 14.308 21.5259 14.9049 20.4921L17.0767 16.7304C17.6736 15.6966 18.9956 15.3423 20.0295 15.9392V15.9392C21.0634 16.5361 21.4177 17.8582 20.8207 18.8921L19.7391 20.7656"
+                                stroke-linecap="round"
+                            />
+                            <path
+                                d="M15.7288 10.2735C15.7288 11.4941 15.0144 12.6716 14.2264 13.5865C13.8397 14.0355 13.4517 14.4022 13.1602 14.6567C13.0953 14.7133 13.0354 14.7642 12.9816 14.809C12.9278 14.7642 12.8679 14.7133 12.803 14.6567C12.5115 14.4022 12.1235 14.0355 11.7368 13.5865C10.9488 12.6716 10.2344 11.4941 10.2344 10.2735C10.2344 8.75622 11.4644 7.52625 12.9816 7.52625C14.4989 7.52625 15.7288 8.75622 15.7288 10.2735ZM12.6868 15.0432C12.6868 15.0432 12.6868 15.0432 12.6868 15.0432L12.6868 15.0432Z" />
+                            <circle cx="18.0476" cy="23.6401" r="1.55545" />
+                        </g>
+                    </svg>
+
+                </a>
             </div>
             <div class="footer__socials">
                 <a
@@ -96,7 +107,7 @@ export default {
         const footerStore = useFooterStore();
         const isFooterVisible = computed(() => footerStore.isVisible);
         const contactsList = computed(() => Object.values(contacts)
-            ?.filter((item) => typeof item === 'object'));
+            ?.filter((item) => item?.value && item));
         const whatsupPhone = computed(() => contacts.phone.value?.replace(/\D/g, ''));
 
         return {
@@ -117,6 +128,7 @@ export default {
 
     &__container {
         display: flex;
+        position: relative;
 
         @include sm-down {
             flex-direction: column;
@@ -149,17 +161,54 @@ export default {
 
     & .list {
         & .item {
-            &__link {
+            &__link,
+            &__inner {
                 font-size: 1.4rem;
                 display: block;
                 color: $light-grey;
-                padding: .5rem;
+                padding: .5rem 0;
+            }
+
+            &__link {
                 transition: opacity .3s;
 
                 &:hover {
                     opacity: .6;
                 }
             }
+        }
+    }
+
+    &__route {
+        margin-top: auto;
+        margin-left: auto;
+        transition: opacity .3s;
+        stroke: $light-grey;
+
+        &:hover {
+            opacity: .6;
+        }
+
+        @include sm-down {
+            position: absolute;
+            top: 0;
+            right: 4rem;
+        }
+
+        @include xs-down {
+            right: 2rem;
+        }
+
+        @include xss-down {
+            position: static;
+            margin: 1rem auto 0 0;
+        }
+
+        & a {
+            color: $light-grey;
+            @include centered(center);
+            gap: 1rem;
+            padding: 0.5rem 0;
         }
     }
 
@@ -171,12 +220,13 @@ export default {
         gap: 2rem;
 
         @include xss-down {
-            margin: 0 auto;
+            margin: 1rem auto 0;
         }
 
         & .social-link {
             width: 24px;
             height: 24px;
+            padding: 0.5rem 0;
             transition: opacity .3s;
 
             &:hover {

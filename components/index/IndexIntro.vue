@@ -83,9 +83,9 @@
 
 <script>
 import { register } from 'swiper/element/bundle';
-import image_1 from '~/assets/images/index/intro_1.jpg';
-import image_2 from '~/assets/images/index/intro_2.jpg';
-import image_3 from '~/assets/images/index/intro_3.jpg';
+import image_1 from '/images/index/intro_1.jpg';
+import image_2 from '/images/index/intro_2.jpg';
+import image_3 from '/images/index/intro_3.jpg';
 import { useGlobalStore } from '~/stores/global';
 
 register();

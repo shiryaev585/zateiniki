@@ -1,5 +1,3 @@
-import { defineNuxtConfig } from 'nuxt/config';
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     devtools: { enabled: true },
@@ -21,7 +19,8 @@ export default defineNuxtConfig({
     plugins: [
         '~/plugins/observe-directive.js',
         '~/plugins/global-components.js',
-        '~/plugins/maska.js'
+        '~/plugins/maska.js',
+        { src: '~/plugins/ymap.js',  mode: 'client' }
     ],
     modules: [
         '@pinia/nuxt',
@@ -30,6 +29,7 @@ export default defineNuxtConfig({
     runtimeConfig: {
         public: {
             requestUrl: process.env.REQUEST_URL,
+            ymapKey: process.env.YMAP_KEY
         }
     },
 });
