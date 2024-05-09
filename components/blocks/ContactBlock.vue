@@ -13,6 +13,10 @@
                 <span class="label">Email</span>
                 <a :href="emailHref" class="value">{{ contacts.email.value }}</a>
             </div>
+            <div v-observe class="info-box anim-appear delay-3">
+                <span class="label">Адрес</span>
+                <a :href="addressHref" target="_blanc" class="value">{{ contacts.address.value }}</a>
+            </div>
         </div>
 
         <transition name="fade" mode="out-in">
@@ -84,13 +88,15 @@ export default {
         const success = ref(false);
         const phoneHref = computed(() => contacts.phone.type + contacts.phone.value?.replace(/(\()|(\)|(-))/g, ''));
         const emailHref = computed(() => contacts.email.type + contacts.email.value);
+        const addressHref = computed(() => contacts.address.href);
 
         return {
             form,
             showPreloader,
             success,
             phoneHref,
-            emailHref
+            emailHref,
+            addressHref
         };
     },
 
@@ -150,13 +156,15 @@ export default {
 
 .info {
     flex: 1;
-    @include centered(center);
+    display: flex;
+    justify-content: center;
     flex-direction: column;
 
     @include sm-down {
         flex-direction: row;
         width: 70%;
         justify-content: space-between;
+        flex-wrap: wrap;
     }
 
     @include xs-down {
@@ -170,6 +178,21 @@ export default {
     &-box {
         display: flex;
         flex-direction: column;
+        padding-left: 15rem;
+
+        @include md-down {
+            padding-left: 0;
+        }
+
+        &:last-of-type {
+            @include sm-down {
+                margin: 0 auto;
+            }
+
+            @include xs-down {
+                margin: 0;
+            }
+        }
     }
 }
 

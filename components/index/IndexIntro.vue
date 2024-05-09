@@ -171,10 +171,6 @@ export default {
         & .btn {
             position: relative;
             z-index: 2;
-
-            &.animated {
-                opacity: 1;
-            }
         }
     }
 }

@@ -4,7 +4,7 @@ export const contacts = {
         type: 'tel:'
     },
     email: {
-        value: 'zateiniki@mail.ru',
+        value: 'zateiniki_teatr@mail.ru',
         type: 'mailto:'
     },
     address: {
