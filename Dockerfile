@@ -6,6 +6,10 @@ COPY . .
 
 RUN npm install
 
-EXPOSE 3000
+ENV PORT 3000
+
+EXPOSE $PORT
+
+VOLUME [ "/app/data" ]
 
 CMD ["npm", "run", "dev"]
