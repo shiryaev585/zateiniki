@@ -1,11 +1,6 @@
 <template>
     <div :class="['modal', { _visible: isModal }]">
-        <button class="close" @click="globalStore.toggleModal(false)">
-            <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none">
-                <rect x="21.5859" y="7.44336" width="20" height="1.05263" transform="rotate(135 21.5859 7.44336)" fill="#171717" />
-                <rect x="20.5078" y="21.9204" width="20" height="0.999999" transform="rotate(-135 20.5078 21.9204)" fill="#171717" />
-            </svg>
-        </button>
+        <ui-close color="#171717" @close="globalStore.toggleModal(false)" />
         <div class="container form-container">
             <h2 class="title">
                 Закажите звонок
@@ -96,26 +91,6 @@ export default {
 
     &._visible {
         top: 0;
-    }
-}
-
-.close {
-    position: absolute;
-    top: 5%;
-    right: 5%;
-    cursor: pointer;
-    background: transparent;
-    width: 3rem;
-    height: 3rem;
-    transition: transform .35s;
-
-    &:hover {
-        transform: scale(1.2) rotate(180deg);
-    }
-
-    & svg {
-        width: 100%;
-        height: 100%;
     }
 }
 
