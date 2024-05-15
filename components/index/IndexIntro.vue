@@ -83,6 +83,8 @@
 
 <script>
 import { register } from 'swiper/element/bundle';
+import { SwiperSlide } from 'swiper/vue';
+import 'swiper/css';
 import image_1 from '/images/index/intro_1.jpg';
 import image_2 from '/images/index/intro_2.jpg';
 import image_3 from '/images/index/intro_3.jpg';
@@ -92,6 +94,10 @@ register();
 
 export default {
     name: 'IndexIntro',
+
+    components: {
+        SwiperSlide
+    },
 
     setup() {
         const images = [image_1, image_2, image_3];

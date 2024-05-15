@@ -49,3 +49,10 @@ h3 {
 p, li, span {
     @extend %text;
 }
+
+.subtitle {
+    color: $light-grey;
+    font-size: 3rem;
+    padding-bottom: 3rem;
+    display: block;
+}

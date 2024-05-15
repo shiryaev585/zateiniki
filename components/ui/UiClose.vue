@@ -25,8 +25,8 @@ const emits = defineEmits(['close']);
     right: 5%;
     cursor: pointer;
     background: transparent;
-    width: 3rem;
-    height: 3rem;
+    width: 4rem;
+    height: 4rem;
     transition: transform .35s;
 
     &:hover {

@@ -1,5 +1,5 @@
 <template>
-    <div class="performances container">
+    <div class="wrapper container">
         <div
             v-for="(video, idx) in videos"
             :key="video.src"
@@ -55,10 +55,9 @@ const closeModal = () => {
 </script>
 
 <style lang="scss" scoped>
-.performances {
+.wrapper {
     position: relative;
     padding-top: 8rem;
-    padding-bottom: 8rem;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
