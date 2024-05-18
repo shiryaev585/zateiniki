@@ -27,6 +27,13 @@
     line-height: 1.2;
 }
 
+%p {
+    font-family: $font-main;
+    font-weight: 400;
+    font-size: 1.8rem;
+    line-height: 1.2;
+}
+
 h1 {
     @extend %h1;
 }
@@ -39,6 +46,10 @@ h3 {
     @extend %h3;
 }
 
+p {
+    @extend %p;
+}
+
 %text {
     font-family: $font-main;
     font-weight: 400;
@@ -46,7 +57,7 @@ h3 {
     line-height: 1.2;
 }
 
-p, li, span {
+li, span {
     @extend %text;
 }
 

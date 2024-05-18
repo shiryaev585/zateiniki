@@ -1,34 +1,41 @@
 <template>
     <div class="wrapper container">
         <div
-            v-for="(video, idx) in videos"
-            :key="video.src"
+            v-for="(item, idx) in content"
+            :key="item.image_src"
             v-observe
-            class="poster"
-            @click="setActiveVideo(video)"
+            class="image"
+            @click="setActiveItem(item)"
         >
             <div class="overlay"></div>
             <nuxt-img
-                :src="video.poster"
-                :class="['poster__img', `delay-${idx % 2 === 0 ? 1 : 3}`]"
+                :src="item.image_src"
+                :class="['image__img', `delay-${idx % 2 === 0 ? 1 : 3}`]"
                 loading="lazy"
             />
-            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <svg v-if="withFrame" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                 <path d="M26.78,13.45,11.58,4A3,3,0,0,0,7,6.59V25.41a3,3,0,0,0,3,3A3,3,0,0,0,11.58,28l15.2-9.41a3,3,0,0,0,0-5.1Z" />
             </svg>
         </div>
         <transition name="fade">
-            <div v-if="activeVideoSrc" class="modal">
+            <div v-if="activeSrc" class="modal">
                 <ui-close color="#d3d3d3" @close="closeModal" />
                 <iframe
+                    v-if="withFrame"
                     class="frame"
-                    :src="activeVideoSrc"
+                    :src="activeSrc"
                     title="YouTube video player"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerpolicy="strict-origin-when-cross-origin"
                     allowfullscreen
                 ></iframe>
+                <nuxt-img
+                    v-else
+                    :src="activeSrc"
+                    class="modal-image"
+                    loading="lazy"
+                />
             </div>
         </transition>
     </div>
@@ -37,38 +44,46 @@
 <script setup>
 import { useGlobalStore } from '~/stores/global';
 
-defineProps({
-    videos: {
-        type: Object,
+const props = defineProps({
+    content: {
+        type: Array,
         required: true
+    },
+
+    withFrame: {
+        type: Boolean,
+        default: false
     }
 });
 
 const globalStore = useGlobalStore();
-const activeVideoSrc = ref('');
+const activeSrc = ref('');
 
-const setActiveVideo = (video) => {
-    activeVideoSrc.value = video?.src;
+const setActiveItem = (item) => {
+    if (props.withFrame) {
+        activeSrc.value = item?.video_src;
+    } else {
+        activeSrc.value = item?.image_src;
+    }
     globalStore.toggleBodyLocked();
 };
 
 const closeModal = () => {
     globalStore.toggleBodyLocked();
-    activeVideoSrc.value = '';
+    activeSrc.value = '';
 };
 </script>
 
 <style lang="scss" scoped>
 .wrapper {
     position: relative;
-    padding-top: 8rem;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 5rem;
 }
 
-.poster {
+.image {
     position: relative;
     width: 48%;
     height: 35rem;
@@ -121,7 +136,7 @@ const closeModal = () => {
 }
 
 .animated {
-    & .poster__img {
+    & .image__img {
         width: 100%;
     }
 
@@ -140,7 +155,8 @@ const closeModal = () => {
     z-index: 11;
     @include centered(center);
 
-    & .frame {
+    & .frame,
+    & .modal-image {
         width: 80vw;
         height: 80vh;
     }

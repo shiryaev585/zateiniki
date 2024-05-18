@@ -74,3 +74,35 @@ a {
         padding-left: 2rem;
     }
 }
+
+.block {
+    margin-bottom: 5rem;
+}
+
+.my-1 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.my-2 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.py-3 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.py-8 {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+}
+
+.color-light-grey {
+    color: $light-grey;
+}
+
+.color-dark {
+    color: $dark;
+}

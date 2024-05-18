@@ -1,7 +1,7 @@
 <template>
     <div class="page">
-        <intro-block title="Контакты" src="/images/index/intro_3.webp" />
-        <contact-block />
+        <intro-block title="Контакты" src="/images/index/intro_3.webp" class="block" />
+        <contact-block class="block" />
         <map-block />
     </div>
 </template>

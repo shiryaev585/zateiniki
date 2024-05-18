@@ -111,7 +111,6 @@ register();
 <style lang="scss" scoped>
 .wrapper {
     position: relative;
-    padding-top: 8rem;
 }
 
 .subtitle {

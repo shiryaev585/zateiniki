@@ -131,8 +131,6 @@ export default {
 <style lang="scss" scoped>
 .contact-block {
     position: relative;
-    padding-top: 8rem;
-    padding-bottom: 8rem;
     @include centered(center);
     gap: 5%;
 
@@ -144,7 +142,7 @@ export default {
 
     &__title {
         flex: 1;
-        @include centered(center);
+        text-align: center;
         color: $light-grey;
         font-size: 5rem;
 
