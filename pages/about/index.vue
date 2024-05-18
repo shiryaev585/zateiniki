@@ -1,6 +1,6 @@
 <template>
     <div class="about-page">
-        <intro-block title="О нас" src="/images/index/intro_1.jpg" />
+        <intro-block title="О нас" src="/images/index/intro_1.webp" />
     </div>
 </template>
 <script setup>

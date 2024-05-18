@@ -85,9 +85,9 @@
 import { register } from 'swiper/element/bundle';
 import { SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
-import image_1 from '/images/index/intro_1.jpg';
-import image_2 from '/images/index/intro_2.jpg';
-import image_3 from '/images/index/intro_3.jpg';
+import image_1 from '/images/index/intro_1.webp';
+import image_2 from '/images/index/intro_2.webp';
+import image_3 from '/images/index/intro_3.webp';
 import { useGlobalStore } from '~/stores/global';
 
 register();

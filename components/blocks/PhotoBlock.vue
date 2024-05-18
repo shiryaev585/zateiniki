@@ -6,7 +6,7 @@
         <div class="photos">
             <div
                 v-for="(photo, idx) in photos"
-                :key="photo.src"
+                :key="photo.uuid"
                 v-observe
                 class="photo"
                 @click="initSlider(idx)"
@@ -15,6 +15,7 @@
                     :src="photo.src"
                     class="img delay-2"
                     alt="image"
+                    loading="lazy"
                 />
             </div>
         </div>
@@ -26,6 +27,7 @@
                     class="slider-container"
                     :modules="modules"
                     :initial-slide="activeSlide"
+                    :loop="true"
                     :navigation="{
                         nextEl: '.next-btn',
                         prevEl: '.prev-btn',
@@ -33,7 +35,7 @@
                 >
                     <swiper-slide
                         v-for="photo in photos"
-                        :key="photo.src"
+                        :key="photo.uuid"
                         class="photo-slide"
                     >
                         <div class="inner">
@@ -42,6 +44,7 @@
                                 :src="photo.src"
                                 class="image"
                                 alt="image"
+                                loading="lazy"
                             />
                         </div>
                     </swiper-slide>
@@ -62,10 +65,10 @@
 </template>
 
 <script setup>
-import { register } from 'swiper/element/bundle';
-import { useGlobalStore } from '~/stores/global';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Navigation } from 'swiper/modules';
+import { register } from 'swiper/element/bundle';
+import { useGlobalStore } from '~/stores/global';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -82,6 +85,8 @@ defineProps({
     }
 });
 
+const swiper = Swiper;
+const swiperSlide = SwiperSlide;
 const globalStore = useGlobalStore();
 const isSlider = ref(false);
 const activeSlide = ref(0);

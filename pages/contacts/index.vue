@@ -1,6 +1,6 @@
 <template>
     <div class="page">
-        <intro-block title="Контакты" src="/images/index/intro_3.jpg" />
+        <intro-block title="Контакты" src="/images/index/intro_3.webp" />
         <contact-block />
         <map-block />
     </div>

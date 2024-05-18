@@ -6,7 +6,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "analyze": "nuxt build --modern=client --analyze"
   },
   "devDependencies": {
     "@nuxt/image": "^1.6.0",
@@ -23,6 +24,7 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.5.1",
+    "firebase-admin": "^12.1.0",
     "maska": "^2.1.11",
     "pinia": "^2.1.7",
     "swiper": "^10.3.0",
