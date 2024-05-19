@@ -80,7 +80,7 @@ export default {
 
 <style lang="scss" scoped>
 .modal {
-    position: absolute;
+    position: fixed;
     top: -100%;
     left: 0;
     width: 100%;

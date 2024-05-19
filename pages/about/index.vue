@@ -5,7 +5,8 @@
             <p
                 v-for="(innerText, idx) in description"
                 :key="idx"
-                class="description container my-2 color-light-grey"
+                v-observe
+                class="description container my-2 color-light-grey anim-appear"
             >
                 {{ innerText }}
             </p>

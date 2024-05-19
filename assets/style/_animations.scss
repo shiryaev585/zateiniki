@@ -7,7 +7,7 @@
 
 .anim-appear {
     opacity: 0;
-    transition: opacity 3s $easeOut;
+    transition: opacity 3s .3s $easeOut;
 }
 
 .animated {

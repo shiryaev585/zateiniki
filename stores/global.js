@@ -18,6 +18,7 @@ export const useGlobalStore = defineStore('global', {
 
         toggleModal(payload) {
             this.isModal = payload;
+            this.toggleBodyLocked();
         },
 
         togglePreloader(payload) {

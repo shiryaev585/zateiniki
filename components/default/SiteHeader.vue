@@ -8,9 +8,20 @@
             >
                 Затейники
             </nuxt-link>
-            <div :class="['burger', { _open: isMenuOpened }]" @click="toggleMenu">
-                <div class="line up"></div>
-                <div class="line down"></div>
+            <div class="actions">
+                <transition name="fade">
+                    <button
+                        v-if="!isMenuOpened"
+                        class="btn color-light-grey"
+                        @click="globalStore.toggleModal(true)"
+                    >
+                        Свяжитесь с нами
+                    </button>
+                </transition>
+                <div :class="['burger', { _open: isMenuOpened }]" @click="toggleMenu">
+                    <div class="line up"></div>
+                    <div class="line down"></div>
+                </div>
             </div>
         </div>
     </header>
@@ -18,6 +29,7 @@
 
 <script>
 import { useHeaderStore } from '~/stores/header';
+import { useGlobalStore } from '~/stores/global';
 
 export default {
     name: 'SiteHeader',
@@ -25,6 +37,7 @@ export default {
     setup() {
         const isScrolled = ref(false);
         const headerStore = useHeaderStore();
+        const globalStore = useGlobalStore();
         const isMenuOpened = computed(() => headerStore.isMenuOpened);
 
         const checkScroll = () => {
@@ -38,13 +51,13 @@ export default {
             headerStore.isMenuOpened ? headerStore.toggleMenu(false) : headerStore.toggleMenu(true);
         };
 
-
         return {
             isScrolled,
             isMenuOpened,
             checkScroll,
             toggleMenu,
-            headerStore
+            headerStore,
+            globalStore
         };
     },
 
@@ -90,6 +103,23 @@ export default {
 
     @include xss-down {
         font-size: 3rem;
+    }
+}
+
+.actions {
+    @include centered(center);
+    gap: 5rem;
+
+    & .btn {
+        background: transparent;
+        cursor: pointer;
+        transition: opacity .3s;
+        font-family: $font-main;
+        font-size: 1.6rem;
+
+        &:hover {
+            opacity: .6;
+        }
     }
 }
 

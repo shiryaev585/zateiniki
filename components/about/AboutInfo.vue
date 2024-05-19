@@ -1,6 +1,6 @@
 <template>
     <div class="about-info container">
-        <div class="about-info__img">
+        <div v-observe class="about-info__img anim-appear">
             <nuxt-img
                 :src="teacher.src"
                 alt="teacher-image"
@@ -12,7 +12,8 @@
             <p
                 v-for="(innerText, idx) in teacher.text"
                 :key="idx"
-                class="text color-light-grey"
+                v-observe
+                class="text color-light-grey anim-appear"
             >
                 {{ innerText }}
             </p>
@@ -45,6 +46,8 @@ defineProps({
         & .img {
             height: 100%;
             object-fit: cover;
+            transform: translateX(-25px);
+            transition: transform 2s .25s $easeOut;
 
             @include xs-down {
                 display: block;
@@ -60,5 +63,9 @@ defineProps({
     & .text:not(.about-info .text:last-of-type) {
         margin-bottom: 2rem;
     }
+}
+
+.animated.about-info__img .img {
+    transform: translateX(0);
 }
 </style>
