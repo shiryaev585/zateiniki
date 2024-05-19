@@ -26,16 +26,6 @@ import MapBlock from '~/components/blocks/MapBlock.vue';
 const footerStore = useFooterStore();
 const map = ref(null);
 
-const scrollElementIntoView = (element, behavior = 'smooth') => {
-    const scrollTop = window.scrollY || element.scrollTop;
-    const headerHeight = document.querySelector('header').clientHeight;
-    const finalOffset = element.getBoundingClientRect().top + scrollTop - headerHeight;
-    window.parent.scrollTo({
-        top: finalOffset,
-        behavior: behavior || 'auto',
-    });
-};
-
 onMounted(() => {
     footerStore.setFooter(true);
 });
