@@ -77,6 +77,10 @@ a {
 
 .block {
     margin-bottom: 5rem;
+
+    @include sm-down {
+        margin-bottom: 3rem;
+    }
 }
 
 .my-1 {

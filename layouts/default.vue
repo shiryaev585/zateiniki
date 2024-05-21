@@ -14,7 +14,14 @@
                 :class="$style.toTopBtn"
                 @click="scrollElementIntoView(top)"
             >
-                <nuxt-icon name="arrow-up" />
+                <nuxt-img
+                    src="/icons/arrow-up.svg"
+                    alt="icon"
+                    width="50"
+                    height="50"
+                    :class="$style.toTopBtn__img"
+                    loading="lazy"
+                />
             </button>
         </transition>
     </div>
@@ -46,7 +53,7 @@ export default {
         const showPreloader = computed(() => globalStore.showPreloader);
 
         const checkScroll = () => {
-            const currentScroll = window.scrollY > 300;
+            const currentScroll = window.scrollY > 400;
 
             if (isScrolled === currentScroll) { return; }
             isScrolled.value = currentScroll;
@@ -96,7 +103,7 @@ export default {
         transform: scale(1.1);
     }
 
-    & svg {
+    &__img {
         width: 100%;
         height: 100%;
     }

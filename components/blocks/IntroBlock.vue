@@ -12,20 +12,18 @@
     </div>
 </template>
 
-<script>
-export default {
-    props: {
-        title: {
-            type: String,
-            default: ''
-        },
+<script setup>
+defineProps({
+    title: {
+        type: String,
+        default: ''
+    },
 
-        src: {
-            type: String,
-            required: true
-        }
+    src: {
+        type: String,
+        required: true
     }
-};
+});
 </script>
 
 <style lang="scss" scoped>

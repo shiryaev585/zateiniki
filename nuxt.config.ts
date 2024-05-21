@@ -23,8 +23,7 @@ export default defineNuxtConfig({
     ],
     modules: [
         '@pinia/nuxt',
-        '@nuxt/image',
-        'nuxt-icons'
+        '@nuxt/image'
     ],
     runtimeConfig: {
         public: {

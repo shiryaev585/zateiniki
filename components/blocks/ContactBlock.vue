@@ -65,65 +65,44 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import SitePreloader from '~/components/default/SitePreloader.vue';
 
-export default {
-    name: 'ContactBlock',
+defineProps({
+    title: {
+        type: String,
+        default: ''
+    }
+});
 
-    components: {
-        SitePreloader
-    },
+const config = useRuntimeConfig();
+const form = reactive({});
+const showPreloader = ref(false);
+const success = ref(false);
+const phoneHref = computed(() => contacts.phone.type + contacts.phone.value?.replace(/(\()|(\)|(-))/g, ''));
+const emailHref = computed(() => contacts.email.type + contacts.email.value);
+const addressHref = computed(() => contacts.address.href);
 
-    props: {
-        title: {
-            type: String,
-            default: ''
+const submit = async () => {
+    const formData = new FormData();
+    formData.append('name', form?.name);
+    formData.append('phone', form?.phone);
+    showPreloader.value = true;
+    try {
+        const res = await fetch(config.public.requestUrl, {
+            method: 'POST',
+            body: formData,
+            headers: { Accept: 'application/json' },
+        });
+        if (res.ok) {
+            success.value = true;
         }
-    },
-
-    async setup() {
-        const form = reactive({});
-        const showPreloader = ref(false);
-        const success = ref(false);
-        const phoneHref = computed(() => contacts.phone.type + contacts.phone.value?.replace(/(\()|(\)|(-))/g, ''));
-        const emailHref = computed(() => contacts.email.type + contacts.email.value);
-        const addressHref = computed(() => contacts.address.href);
-
-        return {
-            form,
-            showPreloader,
-            success,
-            phoneHref,
-            emailHref,
-            addressHref
-        };
-    },
-
-    methods: {
-        async submit() {
-            // this.success = true;
-            const formData = new FormData();
-            formData.append('name', this.form?.name);
-            formData.append('phone', this.form?.phone);
-            this.showPreloader = true;
-            try {
-                const res = await fetch(this.$config.public.requestUrl, {
-                    method: 'POST',
-                    body: formData,
-                    headers: { Accept: 'application/json' },
-                });
-                if (res.ok) {
-                    this.success = true;
-                }
-                this.form.name = '';
-                this.form.phone = '';
-            } catch (e) {
-                console.error(e);
-            } finally {
-                this.showPreloader = false;
-            }
-        }
+        form.name = '';
+        form.phone = '';
+    } catch (e) {
+        console.error(e);
+    } finally {
+        showPreloader.value = false;
     }
 };
 </script>
@@ -136,8 +115,6 @@ export default {
 
     @include sm-down {
         flex-direction: column;
-        padding-top: 3rem;
-        padding-bottom: 3rem;
     }
 
     &__title {

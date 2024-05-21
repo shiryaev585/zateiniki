@@ -14,7 +14,7 @@
         <about-info :teacher="teacher" class="block" />
         <content-block :content="diplomas" class="block" />
         <contact-block title="А ещё нам можно написать :)" class="block" />
-        <photo-block :photos="images" title="Наши активности" class="block" />
+        <photo-block :photos="images" title="Благотворительность и волонтёрская деятельность" class="block" />
     </div>
 </template>
 <script setup>
