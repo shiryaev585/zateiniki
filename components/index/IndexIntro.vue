@@ -4,7 +4,8 @@
             <h1 class="title anim-left anim-inner">
                 Театральная студия Затейники
             </h1>
-            <span class="anim-left anim-inner">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti esse porro quod aliquid at saepe.</span>
+            <span class="anim-left anim-inner">Весь мир - театр, мы все - актеры поневоле, Всесильная Судьба распределяет роли, И небеса следят за нашею игрой!</span>
+            <span class="anim-left anim-inner author">Пьер де Ронсар</span>
             <ui-btn
                 v-observe
                 label="Связаться с нами"
@@ -60,7 +61,7 @@
                 class="slide"
             >
                 <nuxt-link :to="menuRoutes[idx].path">
-                    <span>{{ menuRoutes[idx].name }}</span>
+                    <span v-observe class="name anim-appear">{{ menuRoutes[idx].name }}</span>
                     <div
                         class="slide__img"
                         data-swiper-parallax="50%"
@@ -168,10 +169,14 @@ export default {
         }
 
         & span {
-            margin-bottom: 8rem;
+            margin-bottom: 2rem;
 
-            @include sm-down {
-                margin-bottom: 4rem;
+            &:last-of-type {
+                margin-bottom: 8rem;
+
+                @include sm-down {
+                    margin-bottom: 4rem;
+                }
             }
         }
 
@@ -232,11 +237,22 @@ export default {
         @include sm-down {
             width: 120%;
             left: -10%;
+            opacity: .5;
         }
     }
 
-    & span {
+    & .name {
         color: #fff;
+
+        @include sm-down {
+            position: absolute;
+            bottom: 0;
+            right: 10%;
+            z-index: 1;
+            font-family: $font-second;
+            font-size: 6rem;
+            letter-spacing: 10px;
+        }
     }
 }
 
@@ -248,7 +264,7 @@ export default {
     width: 20%;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 2rem;
 
     @include sm-down {
         right: 50%;
@@ -260,9 +276,10 @@ export default {
     &.animated {
         opacity: 1;
     }
+}
 
-    & .author {
-        font-size: 1.2rem;
-    }
+.author {
+    font-size: 1.2rem;
+    text-align: end;
 }
 </style>

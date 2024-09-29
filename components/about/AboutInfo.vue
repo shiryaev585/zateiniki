@@ -2,21 +2,23 @@
     <div class="about-info container">
         <div v-observe class="about-info__img anim-appear">
             <nuxt-img
-                :src="teacher.src"
+                :src="teacher.img_one"
                 alt="teacher-image"
                 loading="lazy"
-                class="img"
+                class="img img-1"
             />
-        </div>
-        <div class="about-info__text">
-            <p
-                v-for="(innerText, idx) in teacher.text"
-                :key="idx"
-                v-observe
-                class="text color-light-grey anim-appear"
-            >
-                {{ innerText }}
-            </p>
+            <template v-for="(innerText, idx) in teacher.text" :key="idx">
+                <p v-observe class="text color-light-grey anim-appear">
+                    {{ innerText }}
+                </p>
+                <nuxt-img
+                    v-if="idx === 2"
+                    :src="teacher.img_two"
+                    alt="teacher-image"
+                    loading="lazy"
+                    class="img img-2"
+                />
+            </template>
         </div>
     </div>
 </template>
@@ -41,27 +43,42 @@ defineProps({
 
     &__img {
         position: relative;
-        height: 50rem;
 
         & .img {
-            height: 100%;
             object-fit: cover;
-            transform: translateX(-25px);
             transition: transform 2s .25s $easeOut;
 
             @include xs-down {
-                display: block;
-                margin: auto;
-            }
-
-            @include xss-down {
                 width: 100%;
+                margin: 0 auto 1rem;
             }
         }
     }
 
     & .text:not(.about-info .text:last-of-type) {
         margin-bottom: 2rem;
+    }
+}
+
+.img-1 {
+    float: left;
+    margin-right: 1rem;
+    width: 40rem;
+    transform: translateX(-25px);
+
+    @include md-down {
+        width: 35rem;
+    }
+}
+
+.img-2 {
+    float: right;
+    margin-left: 1rem;
+    width: 40rem;
+    transform: translateX(25px);
+
+    @include md-down {
+        width: 25rem;
     }
 }
 
