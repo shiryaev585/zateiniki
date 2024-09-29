@@ -33,6 +33,13 @@ const teacher = computed(() => data.value?.find((item) => item.uuid === 'teacher
 const images = computed(() => data.value?.find((item) => item.uuid === 'images')?.images);
 const diplomas = computed(() => teacher.value?.diplomas);
 
+useHead({
+    title: 'Затейники - О нас',
+    meta: [
+        { name: 'description', content: 'Детская театральная студия в Марьино, спектакли, выступления, репетиции, благотворительность' }
+    ],
+});
+
 onMounted(() => {
     footerStore.setFooter(true);
 });

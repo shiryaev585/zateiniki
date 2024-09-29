@@ -29,6 +29,13 @@ import MapBlock from '~/components/blocks/MapBlock.vue';
 const footerStore = useFooterStore();
 const map = ref(null);
 
+useHead({
+    title: 'Затейники - Контакты',
+    meta: [
+        { name: 'description', content: 'Оставьте Ваши контакты для получения консультации или записи в театральную студию' }
+    ],
+});
+
 onMounted(() => {
     footerStore.setFooter(true);
 });

@@ -16,6 +16,13 @@ const { data } = await useFetch('/api/performances');
 const videos = computed(() => data.value?.find((item) => item.uuid === 'videos')?.videos);
 const photos = computed(() => data.value?.find((item) => item.uuid === 'images')?.images);
 
+useHead({
+    title: 'Затейники - Спектакли',
+    meta: [
+        { name: 'description', content: 'Детская театральная студия в Марьино, спектакли, выступления, репетиции, благотворительность' }
+    ],
+});
+
 onMounted(() => {
     footerStore.setFooter(true);
 });

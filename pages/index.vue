@@ -9,6 +9,13 @@ import { useFooterStore } from '~/stores/footer';
 
 const footerStore = useFooterStore();
 
+useHead({
+    title: 'Затейники | Театральная студия в Марьино',
+    meta: [
+        { name: 'description', content: 'Детская театральная студия в Марьино' }
+    ],
+});
+
 onMounted(() => {
     footerStore.setFooter(false);
 });
