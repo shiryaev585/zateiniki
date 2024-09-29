@@ -11,12 +11,14 @@
                 {{ innerText }}
             </p>
         </div>
+        <about-advantages class="advantages-block block" />
         <about-info :teacher="teacher" class="block" />
         <content-block :content="diplomas" class="block" />
         <contact-block title="А ещё нам можно написать :)" class="block" />
         <photo-block :photos="images" title="Благотворительность и волонтёрская деятельность" class="block" />
     </div>
 </template>
+
 <script setup>
 import { useFooterStore } from '~/stores/footer';
 import IntroBlock from '~/components/blocks/IntroBlock.vue';
@@ -35,3 +37,12 @@ onMounted(() => {
     footerStore.setFooter(true);
 });
 </script>
+
+<style lang="scss" scoped>
+.about-page {
+    & .advantages-block {
+        padding-top: 4trm;
+        padding-bottom: 4rem;
+    }
+}
+</style>

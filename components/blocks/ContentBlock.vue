@@ -160,5 +160,9 @@ const closeModal = () => {
         width: 80vw;
         height: 80vh;
     }
+
+    & .modal-image {
+        object-fit: contain;
+    }
 }
 </style>

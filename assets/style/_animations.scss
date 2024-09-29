@@ -36,6 +36,10 @@
     transition-delay: 1s;
 }
 
+.delay-6 {
+    transition-delay: 1.2s;
+}
+
 .fade-enter-active,
 .fade-leave-active {
     transition: opacity 0.5s ease;

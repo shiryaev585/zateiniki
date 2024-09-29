@@ -76,7 +76,8 @@
             v-observe
             class="text-2 anim-appear"
         >
-            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia odit dolorem culpa cum ut in praesentium, quod consequuntur blanditiis dolore!</span>
+            <span>Театр — это такая кафедра, с которой можно много сказать миру добра.</span>
+            <span class="author">Николай Васильевич Гоголь</span>
         </div>
     </div>
 </template>
@@ -245,6 +246,9 @@ export default {
     bottom: 10%;
     z-index: 2;
     width: 20%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 
     @include sm-down {
         right: 50%;
@@ -255,6 +259,10 @@ export default {
 
     &.animated {
         opacity: 1;
+    }
+
+    & .author {
+        font-size: 1.2rem;
     }
 }
 </style>
