@@ -21,7 +21,7 @@ export default defineNuxtConfig({
         '~/plugins/maska.js',
         { src: '~/plugins/ymap.js',  mode: 'client' }
     ],
-    modules: ['@pinia/nuxt', '@nuxt/image', '@nuxthub/core'],
+    modules: ['@pinia/nuxt', '@nuxt/image'],
     runtimeConfig: {
         public: {
             requestUrl: process.env.REQUEST_URL,

@@ -16,7 +16,7 @@
                 />
             </button>
         </div>
-        <map-block ref="map" />
+        <!-- <map-block ref="map" /> -->
     </div>
 </template>
 
@@ -24,7 +24,7 @@
 import { useFooterStore } from '~/stores/footer';
 import IntroBlock from '~/components/blocks/IntroBlock.vue';
 import ContactBlock from '~/components/blocks/ContactBlock.vue';
-import MapBlock from '~/components/blocks/MapBlock.vue';
+// import MapBlock from '~/components/blocks/MapBlock.vue';
 
 const footerStore = useFooterStore();
 const map = ref(null);
