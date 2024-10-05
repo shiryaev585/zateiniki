@@ -14,14 +14,14 @@
                 @click="globalStore.toggleModal(true)"
             />
         </div>
-        <swiper-container
+        <swiper
             class="slider-bg"
             :centered-slides="true"
             :parallax="true"
             :slides-per-view="3.5"
             :space-between="80"
             controller-control=".slider-main"
-            @progress="onProgress"
+            @slide-change="onSlideChange"
         >
             <swiper-slide
                 v-for="(image, idx) in images"
@@ -35,9 +35,9 @@
                 >
                 </div>
             </swiper-slide>
-        </swiper-container>
+        </swiper>
 
-        <swiper-container
+        <swiper
             class="slider-main"
             :centered-slides="true"
             :parallax="true"
@@ -53,7 +53,7 @@
                     spaceBetween: 80
                 }
             }"
-            @progress="onProgress"
+            @slide-change="onSlideChange"
         >
             <swiper-slide
                 v-for="(image, idx) in images"
@@ -70,10 +70,10 @@
                     </div>
                 </nuxt-link>
             </swiper-slide>
-        </swiper-container>
+        </swiper>
 
         <div
-            v-if="sliderProgress === 1"
+            v-if="sliderProgress"
             v-observe
             class="text-2 anim-appear"
         >
@@ -85,7 +85,7 @@
 
 <script>
 import { register } from 'swiper/element/bundle';
-import { SwiperSlide } from 'swiper/vue';
+import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import image_1 from '/images/index/intro_1.webp';
 import image_2 from '/images/index/intro_2.webp';
@@ -98,6 +98,7 @@ export default {
     name: 'IndexIntro',
 
     components: {
+        Swiper,
         SwiperSlide
     },
 
@@ -105,22 +106,19 @@ export default {
         const images = [image_1, image_2, image_3];
         const globalStore = useGlobalStore();
         const isModal = computed(() => globalStore.isModal);
-        const sliderProgress = ref(0);
+        const sliderProgress = ref(false);
+        const onSlideChange = ({ activeIndex }) => {
+            images?.length === activeIndex + 1 ? sliderProgress.value = true : sliderProgress.value = false;
+        };
 
         return {
             images,
             globalStore,
             isModal,
-            sliderProgress
+            sliderProgress,
+            onSlideChange
         };
     },
-
-    methods: {
-        onProgress(e) {
-            const [swiper, progress] = e.detail;
-            this.sliderProgress = progress;
-        },
-    }
 };
 </script>
 
