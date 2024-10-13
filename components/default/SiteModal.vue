@@ -81,7 +81,7 @@ export default {
 <style lang="scss" scoped>
 .modal {
     position: fixed;
-    top: -100%;
+    top: -150%;
     left: 0;
     width: 100%;
     height: 100%;
@@ -96,6 +96,10 @@ export default {
 
 .form-container {
     margin-top: 12rem;
+
+    @include sm-down {
+        margin-top: 4rem;
+    }
 }
 
 .form {

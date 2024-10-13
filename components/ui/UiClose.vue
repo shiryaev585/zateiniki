@@ -29,6 +29,11 @@ const emits = defineEmits(['close']);
     height: 4rem;
     transition: transform .35s;
 
+    @include xss-down {
+        top: 0;
+        right: 0;
+    }
+
     &:hover {
         transform: scale(1.2) rotate(180deg);
     }

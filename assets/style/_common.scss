@@ -25,6 +25,12 @@ body {
     overflow-y: auto;
     @include thin-scrollbar($dark50);
 
+    --header-height: 8rem;
+
+    @include xss-down {
+        --header-height: 6rem;
+    }
+
     &._locked,
     &._no-scroll {
         width: 100%;
