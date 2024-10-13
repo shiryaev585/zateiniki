@@ -14,7 +14,7 @@
         <about-advantages class="advantages-block block" />
         <about-info :teacher="teacher" class="block" />
         <content-block :content="diplomas" class="block" />
-        <contact-block title="А ещё нам можно написать :)" class="block" />
+        <contact-block title="А ещё нам можно написать :)" light-bg class="block left-offset" />
         <photo-block :photos="images" title="Благотворительность и волонтёрская деятельность" class="block" />
     </div>
 </template>
@@ -48,7 +48,7 @@ onMounted(() => {
 <style lang="scss" scoped>
 .about-page {
     & .advantages-block {
-        padding-top: 4trm;
+        padding-top: 4rem;
         padding-bottom: 4rem;
     }
 }

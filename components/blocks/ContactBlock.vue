@@ -1,5 +1,5 @@
 <template>
-    <div class="contact-block container">
+    <div :class="['contact-block container', { 'light-bg': lightBg }]">
         <site-preloader :show-preloader="showPreloader" is-light />
         <h2 v-if="title" v-observe class="contact-block__title anim-appear delay-1">
             {{ title }}
@@ -72,6 +72,11 @@ defineProps({
     title: {
         type: String,
         default: ''
+    },
+
+    lightBg: {
+        type: Boolean,
+        default: false
     }
 });
 
@@ -122,9 +127,28 @@ const submit = async () => {
         text-align: center;
         color: $light-grey;
         font-size: 5rem;
+        padding-left: 2rem;
 
         @include xs-down {
             font-size: 3rem;
+        }
+    }
+
+    &.light-bg {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+
+        & :is(.contact-block__title, .form__subtitle, .label, .input, .success__subtitle, .success__txt) {
+            color: $dark50;
+        }
+
+        & :deep(.input) {
+            border-bottom: 1px solid $dark50;
+        }
+
+        & :deep(.ui-btn) {
+            color: $dark50;
+            border: 1px solid $dark50; 
         }
     }
 }

@@ -116,3 +116,35 @@ a {
 .color-dark {
     color: $dark;
 }
+
+.light-bg {
+    background: #fff;
+}
+
+.right-offset {
+    padding-right: 0;
+    margin-right: 4rem;
+
+    @include sm-down {
+        margin-right: 0;
+        padding-right: 4rem;
+    }
+
+    @include xs-down {
+        padding-right: 2rem;
+    }
+}
+
+.left-offset {
+    padding-left: 0;
+    margin-left: 4rem;
+
+    @include sm-down {
+        margin-left: 0;
+        padding-left: 4rem;
+    }
+
+    @include xs-down {
+        padding-left: 2rem;
+    }
+}

@@ -1,5 +1,5 @@
 <template>
-    <div class="advantages container">
+    <div class="advantages container light-bg right-offset">
         <h2 v-observe class="advantages__title">
             <span class="subtitle">Театральное творчество поможет Вашему ребёнку</span>
         </h2>
@@ -65,6 +65,7 @@ const advantages = reactive([
         & .subtitle {
             transform: translateX(-200%);
             transition: transform 2s $easeText;
+            color: $dark50;
         }
 
         &.animated .subtitle {
@@ -77,9 +78,10 @@ const advantages = reactive([
         justify-content: space-between;
         gap: 2rem;
         flex-wrap: wrap;
+        padding-right: 2rem;
 
-        @include md-down {
-
+        @include xss-down {
+            padding-right: 0;
         }
     }
 
@@ -104,13 +106,13 @@ const advantages = reactive([
         }
 
         & img {
-            filter: invert(100%);
             height: 4rem;
         }
 
         & span {
             text-align: center;
             text-transform: uppercase;
+            color: $dark50;
         }
     }
 }

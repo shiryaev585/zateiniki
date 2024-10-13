@@ -16,14 +16,14 @@
 </template>
 
 <script>
-import { yandexMap, yandexMarker } from 'vue-yandex-maps';
+import { YandexMap, YandexMarker } from 'vue-yandex-maps';
 
 export default {
     name: 'MapBlock',
 
     components: {
-        yandexMap,
-        yandexMarker
+        YandexMap,
+        YandexMarker
     }
 };
 </script>
@@ -34,6 +34,6 @@ export default {
 }
 
 .yandex-container {
-    height: 50vh;
+    height: 60vh;
 }
 </style>
