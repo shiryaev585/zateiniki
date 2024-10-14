@@ -2,30 +2,34 @@
     <div id="map" v-observe class="map anim-appear delay-2 ">
         <client-only>
             <yandex-map
-                :coordinates="contacts.coords"
-                :zoom="14"
-                :controls="['routeButtonControl', 'zoomControl']"
+                :settings="{
+                    location: {
+                        center: contacts.coords,
+                        zoom: 15,
+                    },
+                }"
             >
-                <yandex-marker 
-                    :coordinates="contacts.coords"
-                    marker-id="123"
-                />
+                <yandex-map-default-scheme-layer :settings="{ theme: 'dark' }" />
+                <yandex-map-default-features-layer />
+                <yandex-map-controls :settings="{ position: 'right' }">
+                    <yandex-map-zoom-control />
+                </yandex-map-controls>
+
+                <yandex-map-default-marker :settings="{ coordinates: contacts.coords, title: 'Затейники' }" />
             </yandex-map>
         </client-only>
     </div>
 </template>
-
-<script>
-import { YandexMap, YandexMarker } from 'vue-yandex-maps';
-
-export default {
-    name: 'MapBlock',
-
-    components: {
-        YandexMap,
-        YandexMarker
-    }
-};
+  
+<script setup>
+import {
+    YandexMap,
+    YandexMapDefaultSchemeLayer,
+    YandexMapDefaultFeaturesLayer,
+    YandexMapControls,
+    YandexMapZoomControl,
+    YandexMapDefaultMarker
+} from 'vue-yandex-maps';
 </script>
 
 <style lang="scss" scoped>
@@ -33,7 +37,7 @@ export default {
     height: fit-content;
 }
 
-.yandex-container {
+:deep(.__ymap_container) {
     height: 60vh;
 }
 </style>

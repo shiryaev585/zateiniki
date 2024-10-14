@@ -28,7 +28,7 @@
     "maska": "^2.1.11",
     "pinia": "^2.1.7",
     "swiper": "^10.3.0",
-    "vue-yandex-maps": "^1.1.0"
+    "vue-yandex-maps": "^2.1.4"
   },
   "overrides": {
     "vue": "latest"

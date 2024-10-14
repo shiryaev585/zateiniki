@@ -19,13 +19,14 @@ export default defineNuxtConfig({
     plugins: [
         '~/plugins/observe-directive.js',
         '~/plugins/maska.js',
-        { src: '~/plugins/ymap.js',  mode: 'client' }
     ],
-    modules: ['@pinia/nuxt', '@nuxt/image'],
+    modules: ['@pinia/nuxt', '@nuxt/image', 'vue-yandex-maps/nuxt'],
+    yandexMaps: {
+        apikey: process.env.YMAP_KEY,
+    },
     runtimeConfig: {
         public: {
-            requestUrl: process.env.REQUEST_URL,
-            ymapKey: process.env.YMAP_KEY
+            requestUrl: process.env.REQUEST_URL
         }
     },
 });
