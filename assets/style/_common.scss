@@ -23,6 +23,9 @@ body {
     line-height: 1.4;
     color: $dark;
     overflow-y: auto;
+    background: $dark50;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     @include thin-scrollbar($dark50);
 
     --header-height: 8rem;
