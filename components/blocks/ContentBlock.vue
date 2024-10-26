@@ -2,14 +2,14 @@
     <div class="wrapper container">
         <div
             v-for="(item, idx) in content"
-            :key="item.image_src"
+            :key="item.id"
             v-observe
             class="image"
             @click="setActiveItem(item)"
         >
             <div class="overlay"></div>
             <nuxt-img
-                :src="item.image_src"
+                :src="item.source_url"
                 :class="['image__img', `delay-${idx % 2 === 0 ? 1 : 3}`]"
                 loading="lazy"
             />
@@ -63,7 +63,7 @@ const setActiveItem = (item) => {
     if (props.withFrame) {
         activeSrc.value = item?.video_src;
     } else {
-        activeSrc.value = item?.image_src;
+        activeSrc.value = item?.source_url;
     }
     globalStore.toggleBodyLocked();
 };

@@ -6,13 +6,13 @@
         <div class="photos">
             <div
                 v-for="(photo, idx) in photos"
-                :key="photo.uuid"
+                :key="photo.id"
                 v-observe
                 class="photo"
                 @click="initSlider(idx)"
             >
                 <nuxt-img
-                    :src="photo.src"
+                    :src="photo.source_url"
                     class="img delay-2"
                     alt="image"
                     loading="lazy"
@@ -35,13 +35,13 @@
                 >
                     <swiper-slide
                         v-for="photo in photos"
-                        :key="photo.uuid"
+                        :key="photo.id"
                         class="photo-slide"
                     >
                         <div class="inner">
-                            <div class="inner__bg" :style="{ backgroundImage: `url('${photo.src}')` }"></div>
+                            <div class="inner__bg" :style="{ backgroundImage: `url('${photo.source_url}')` }"></div>
                             <nuxt-img
-                                :src="photo.src"
+                                :src="photo.source_url"
                                 class="image"
                                 alt="image"
                                 loading="lazy"

@@ -12,9 +12,9 @@ import ContentBlock from '~/components/blocks/ContentBlock.vue';
 import PhotoBlock from '~/components/blocks/PhotoBlock.vue';
 
 const footerStore = useFooterStore();
-const { data } = await useFetch('/api/performances');
-const videos = computed(() => data.value?.find((item) => item.uuid === 'videos')?.videos);
-const photos = computed(() => data.value?.find((item) => item.uuid === 'images')?.images);
+
+const videos = [];
+const photos = [];
 
 useHead({
     title: 'Затейники - Спектакли',

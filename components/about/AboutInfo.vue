@@ -1,23 +1,11 @@
 <template>
     <div class="about-info container">
         <div v-observe class="about-info__img anim-appear">
-            <nuxt-img
-                :src="teacher.img_one"
-                alt="teacher-image"
-                loading="lazy"
-                class="img img-1"
-            />
-            <template v-for="(innerText, idx) in teacher.text" :key="idx">
-                <p v-observe class="text color-light-grey anim-appear">
-                    {{ innerText }}
+            <template v-for="(item, idx) in teacher" :key="idx">
+                <p v-if="item.text" v-observe class="text color-light-grey anim-appear">
+                    {{ item.text }}
                 </p>
-                <nuxt-img
-                    v-if="idx === 2"
-                    :src="teacher.img_two"
-                    alt="teacher-image"
-                    loading="lazy"
-                    class="img img-2"
-                />
+                <div v-else :class="[`img img-${idx + 1}`]" v-html="item.image"></div>
             </template>
         </div>
     </div>
@@ -26,7 +14,7 @@
 <script setup>
 defineProps({
     teacher: {
-        type: Object,
+        type: Array,
         required: true
     }
 });
@@ -60,6 +48,12 @@ defineProps({
     }
 }
 
+.img {
+    & :deep(img) {
+        width: 100%;
+    }
+}
+
 .img-1 {
     float: left;
     margin-right: 1rem;
@@ -71,7 +65,7 @@ defineProps({
     }
 }
 
-.img-2 {
+.img-5 {
     float: right;
     margin-left: 1rem;
     width: 40rem;

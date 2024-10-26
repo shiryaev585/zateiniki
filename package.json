@@ -24,7 +24,6 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.5.1",
-    "firebase-admin": "^12.1.0",
     "maska": "^2.1.11",
     "pinia": "^2.1.7",
     "swiper": "^10.3.0",

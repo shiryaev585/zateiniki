@@ -3,19 +3,19 @@
         <intro-block title="О нас" src="/images/index/intro_1.webp" class="block" />
         <div class="block">
             <p
-                v-for="(innerText, idx) in description"
+                v-for="(inner, idx) in description"
                 :key="idx"
                 v-observe
                 class="description container my-2 color-light-grey anim-appear"
             >
-                {{ innerText }}
+                {{ inner }}
             </p>
         </div>
         <about-advantages class="advantages-block block" />
         <about-info :teacher="teacher" class="block" />
         <content-block :content="diplomas" class="block" />
         <contact-block title="А ещё нам можно написать :)" light-bg class="block left-offset" />
-        <photo-block :photos="images" title="Благотворительность и волонтёрская деятельность" class="block" />
+        <photo-block :photos="charity" title="Благотворительность и волонтёрская деятельность" class="block" />
     </div>
 </template>
 
@@ -27,11 +27,6 @@ import ContactBlock from '~/components/blocks/ContactBlock.vue';
 import PhotoBlock from '~/components/blocks/PhotoBlock.vue';
 
 const footerStore = useFooterStore();
-const { data } = await useFetch('/api/about');
-const description = computed(() => data.value?.find((item) => item.uuid === 'description')?.description);
-const teacher = computed(() => data.value?.find((item) => item.uuid === 'teacher')?.teacher);
-const images = computed(() => data.value?.find((item) => item.uuid === 'images')?.images);
-const diplomas = computed(() => teacher.value?.diplomas);
 
 useHead({
     title: 'Затейники - О нас',
@@ -40,6 +35,15 @@ useHead({
     ],
 });
 
+const { data: about } = await useApi('/about/');
+const description = computed(() => about.value?.map((item) => item?.text).reverse());
+
+const { data: teacher } = await useApi('/teacher/');
+
+const { data: media } = await useApi('/media/', { query: { per_page: 100 } });
+const charity = computed(() => media.value?.filter((item) => item?.link?.includes('charity')).reverse());
+const diplomas = computed(() => media.value?.filter((item) => item?.link?.includes('diplomas')).reverse());
+
 onMounted(() => {
     footerStore.setFooter(true);
 });
@@ -47,6 +51,14 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .about-page {
+    & .description {
+        width: 70%;
+
+        @include sm-down {
+            width: auto;
+        }
+    }
+
     & .advantages-block {
         padding-top: 4rem;
         padding-bottom: 4rem;
