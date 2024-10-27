@@ -15,7 +15,12 @@
                     <yandex-map-zoom-control />
                 </yandex-map-controls>
 
-                <yandex-map-default-marker :settings="{ coordinates: contacts.coords, title: 'Затейники' }" />
+                <yandex-map-marker
+                    position="top left-center"
+                    :settings="{ coordinates: contacts.coords, title: 'Затейники' }"
+                >
+                    <img src="~/public/map-marker.svg" class="map-logo-icon" alt="logo-icon">
+                </yandex-map-marker>
             </yandex-map>
         </client-only>
     </div>
@@ -28,7 +33,7 @@ import {
     YandexMapDefaultFeaturesLayer,
     YandexMapControls,
     YandexMapZoomControl,
-    YandexMapDefaultMarker
+    YandexMapMarker
 } from 'vue-yandex-maps';
 </script>
 
@@ -39,5 +44,9 @@ import {
 
 :deep(.__ymap_container) {
     height: 60vh;
+}
+
+.map-logo-icon {
+    height: 7rem;
 }
 </style>
