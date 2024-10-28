@@ -15,13 +15,16 @@ const footerStore = useFooterStore();
 
 const videos = [{
     source_url: '/images/index/intro_1.webp',
-    video_src: 'https://www.youtube.com/embed/iNXNO2V0eoU?si=q69DYjhrwq1_I9ri'
+    video_src: 'https://www.youtube.com/embed/iNXNO2V0eoU?si=q69DYjhrwq1_I9ri',
+    alt_text: 'видео выступления'
 },{
     source_url: '/images/index/intro_2.webp',
-    video_src: 'https://www.youtube.com/embed/xWVhf8s60eI?si=9DOz9eWUhzZbVeJJ'
+    video_src: 'https://www.youtube.com/embed/xWVhf8s60eI?si=9DOz9eWUhzZbVeJJ',
+    alt_text: 'видео выступления'
 },{
     source_url: '/images/index/intro_3.webp',
-    video_src: 'https://www.youtube.com/embed/LlVVv86XCmM?si=dTHgAsUFqo1LlKA3'
+    video_src: 'https://www.youtube.com/embed/LlVVv86XCmM?si=dTHgAsUFqo1LlKA3',
+    alt_text: 'видео выступления'
 }];
 
 useHead({

@@ -8,8 +8,8 @@
             </p>
             <button class="btn" @click="scrollElementIntoView(map.$el)">
                 <nuxt-img
-                    src="/icons/arrow-down.svg"
-                    alt="arrow-down-icon"
+                    src="/icons/arrow.svg"
+                    alt="arrow-icon"
                     width="32"
                     height="32"
                     loading="lazy"

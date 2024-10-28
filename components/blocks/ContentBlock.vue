@@ -11,6 +11,7 @@
             <nuxt-img
                 :src="item.source_url"
                 :class="['image__img', `delay-${idx % 2 === 0 ? 1 : 3}`]"
+                :alt="item.alt_text"
                 loading="lazy"
             />
             <svg v-if="withFrame" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
@@ -33,6 +34,7 @@
                 <nuxt-img
                     v-else
                     :src="activeSrc"
+                    :alt="altText"
                     class="modal-image"
                     loading="lazy"
                 />
@@ -58,12 +60,14 @@ const props = defineProps({
 
 const globalStore = useGlobalStore();
 const activeSrc = ref('');
+const altText = ref('');
 
 const setActiveItem = (item) => {
     if (props.withFrame) {
         activeSrc.value = item?.video_src;
     } else {
         activeSrc.value = item?.source_url;
+        altText.value = item?.alt_text;
     }
     globalStore.toggleBodyLocked();
 };
@@ -71,6 +75,7 @@ const setActiveItem = (item) => {
 const closeModal = () => {
     globalStore.toggleBodyLocked();
     activeSrc.value = '';
+    altText.value = '';
 };
 </script>
 

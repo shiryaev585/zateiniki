@@ -14,7 +14,7 @@
                 <nuxt-img
                     :src="photo.source_url"
                     class="img delay-2"
-                    alt="image"
+                    :alt="photo.alt_text"
                     loading="lazy"
                 />
             </div>
@@ -43,7 +43,7 @@
                             <nuxt-img
                                 :src="photo.source_url"
                                 class="image"
-                                alt="image"
+                                :alt="photo.alt_text"
                                 loading="lazy"
                             />
                         </div>

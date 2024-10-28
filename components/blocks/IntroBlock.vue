@@ -3,7 +3,7 @@
         <nuxt-img
             class="bg"
             :src="src"
-            alt="background-image"
+            alt="фоновое изображение"
             loading="lazy"
         />
         <h1 class="intro-block__title anim-appear">

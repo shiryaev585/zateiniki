@@ -15,10 +15,10 @@
                 @click="scrollElementIntoView(top)"
             >
                 <nuxt-img
-                    src="/icons/arrow-up.svg"
+                    src="/icons/arrow.svg"
                     alt="icon"
-                    width="50"
-                    height="50"
+                    width="40"
+                    height="40"
                     :class="$style.toTopBtn__img"
                     loading="lazy"
                 />
@@ -89,8 +89,8 @@ export default {
     position: fixed;
     bottom: 5rem;
     right: 3rem;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     background: transparent;
     cursor: pointer;
     color: #0056ab;
@@ -106,6 +106,7 @@ export default {
     &__img {
         width: 100%;
         height: 100%;
+        transform: rotate(180deg);
     }
 }
 </style>
