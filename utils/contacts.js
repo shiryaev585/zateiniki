@@ -1,6 +1,6 @@
 export const contacts = {
     phone: {
-        value: '+7(903)123-12-12',
+        value: '+7(903)289-71-95',
         type: 'tel:'
     },
     email: {
