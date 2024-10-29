@@ -29,6 +29,7 @@
                 <h3 class="form__subtitle">Оставьте Ваши контакты и мы Вам перезвоним</h3>
                 <div class="inputs">
                     <ui-input
+                        id="name"
                         v-model="form.name"
                         name="name"
                         type="text"
@@ -37,6 +38,7 @@
                         is-light
                     />
                     <ui-input
+                        id="phone"
                         v-model="form.phone"
                         mask-data="+7 (###) ###-##-##"
                         name="phone"

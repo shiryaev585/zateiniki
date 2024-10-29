@@ -3,7 +3,7 @@ export default defineNuxtConfig({
     devtools: { enabled: true },
     app: {
         head: {
-            htmlAttrs: { lang: 'en' },
+            htmlAttrs: { lang: 'ru' },
         },
     },
     css: ['@/assets/style/main.scss'],
