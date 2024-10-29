@@ -19,7 +19,7 @@
                     position="top left-center"
                     :settings="{ coordinates: contacts.coords, title: 'Затейники' }"
                 >
-                    <img src="~/public/map-marker.svg" class="map-logo-icon" alt="logo-icon">
+                    <img src="/map-marker.svg?url" class="map-logo-icon" alt="logo-icon">
                 </yandex-map-marker>
             </yandex-map>
         </client-only>

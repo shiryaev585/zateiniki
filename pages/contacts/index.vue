@@ -1,7 +1,6 @@
 <template>
     <div class="page">
         <intro-block title="Контакты" src="/images/index/intro_3.webp" class="block" />
-        <contact-block class="block" />
         <div v-observe class="pointer container block anim-appear">
             <p class="color-light-grey">
                 Занятия проходят в здании 4 корпуса школы 1566
@@ -16,6 +15,7 @@
                 />
             </button>
         </div>
+        <contact-block class="block" />
         <map-block ref="map" />
     </div>
 </template>
