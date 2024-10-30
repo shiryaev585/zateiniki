@@ -28,6 +28,7 @@
                         <a
                             v-if="contact.type === 'tel:'"
                             :href="contact.type + contact.value?.replace(/(\()|(\)|(-))/g, '')"
+                            aria-label="набрать наш номер"
                             class="item__link"
                         >
                             {{ contact.value }}
@@ -35,6 +36,7 @@
                         <a
                             v-else-if="contact.type"
                             :href="contact.type + contact.value"
+                            aria-label="свяжитесь с нами по email"
                             class="item__link"
                         >
                             {{ contact.value }}
@@ -44,7 +46,7 @@
                 </ul>
             </div>
             <div class="footer__route">
-                <a :href="contacts?.address?.href" target="_blanc">
+                <a :href="contacts?.address?.href" target="_blank" aria-label="проложить удобный маршрут">
                     <span>Проложить маршрут</span>
                     <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g>
@@ -64,7 +66,8 @@
             <div class="footer__socials">
                 <a
                     :href="`https://api.whatsapp.com/send/?phone=${whatsupPhone}`"
-                    target="_blanc"
+                    aria-label="свяжитесь с нами в соц сетях"
+                    target="_blank"
                     class="social-link"
                 >
                     <svg
@@ -79,7 +82,8 @@
                 </a>
                 <a
                     href="https://vk.com/club176546660"
-                    target="_blanc"
+                    aria-label="свяжитесь с нами в соц сетях"
+                    target="_blank"
                     class="social-link"
                 >
                     <svg

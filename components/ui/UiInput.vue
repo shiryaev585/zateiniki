@@ -1,7 +1,8 @@
 <template>
     <div :class="['ui-input', { _focused: focused, _filled: modelValue, _light: isLight }]">
-        <label for="input" class="label">{{ label }}</label>
-        <input 
+        <label :for="name" class="label">{{ label }}</label>
+        <input
+            :id="name"
             v-maska
             :value="modelValue"
             :name="name"

@@ -18,7 +18,7 @@ useHead({
         { property: 'og:type', content: 'website' },
         { property: 'og:url', content: 'https://zateinikiteatr.ru' },
         { property: 'og:locale', content: 'ru_RU' },
-        { property: 'og:image', content: 'https://zateinikiteatr.online/wp-content/uploads/2024/10/16-scaled.webp' },
+        { property: 'og:image', content: 'https://zateinikiteatr.online/wp-content/uploads/2024/10/intro_2.webp' },
     ],
 });
 
