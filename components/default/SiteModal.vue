@@ -9,7 +9,7 @@
                 <div class="inputs">
                     <ui-input
                         v-model="form.name"
-                        name="name"
+                        name="modal-name"
                         type="text"
                         label="Имя*"
                         required
@@ -17,7 +17,7 @@
                     <ui-input
                         v-model="form.phone"
                         mask-data="+7 (###) ###-##-##"
-                        name="phone"
+                        name="modal-phone"
                         type="tel"
                         label="Телефон*"
                         required
