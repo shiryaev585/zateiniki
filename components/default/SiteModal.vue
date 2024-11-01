@@ -22,6 +22,7 @@
                         label="Телефон*"
                         required
                     />
+                    <span class="privacy">Нажимая кнопку «Связаться с нами» Вы даёте своё согласие на обработку <nuxt-link to="/privacy" @click="globalStore.toggleModal(false)">персональных данных</nuxt-link></span>
                 </div>
                 <ui-btn
                     label="Связаться с нами"
@@ -98,7 +99,7 @@ export default {
     margin-top: 12rem;
 
     @include sm-down {
-        margin-top: 4rem;
+        margin-top: 2rem;
     }
 }
 
@@ -113,10 +114,33 @@ export default {
     margin-top: 4rem;
     display: flex;
     flex-direction: column;
-    gap: 3rem;   
+    gap: 3rem;
+
+    @include sm-down {
+        margin-top: 2rem;
+    }
 }
 
 .btn {
     margin-top: 6rem;
+
+    @include sm-down {
+        margin-top: 3rem;
+    }
+}
+
+.privacy {
+    font-size: 1.2rem;
+    color: $dark50;
+
+    & a {
+        color: $dark50;
+        text-decoration: underline;
+        transition: opacity .3s;
+
+        &:hover {
+            opacity: 0.7;
+        }
+    }
 }
 </style>

@@ -47,6 +47,7 @@
                         required
                         is-light
                     />
+                    <span class="privacy">Нажимая кнопку «Связаться с нами» Вы даёте своё согласие на обработку <nuxt-link to="/privacy">персональных данных</nuxt-link></span>
                 </div>
                 <ui-btn
                     label="Связаться с нами"
@@ -151,6 +152,10 @@ const submit = async () => {
         & :deep(.ui-btn) {
             color: $dark50;
             border: 1px solid $dark50; 
+        }
+
+        & :is(.privacy, .privacy a) {
+            color: $dark50;
         }
     }
 }
@@ -288,6 +293,21 @@ const submit = async () => {
         font-size: 2.4rem;
         display: block;
         margin-bottom: 6rem;
+    }
+}
+
+.privacy {
+    font-size: 1.2rem;
+    color: $light-grey;
+
+    & a {
+        color: $light-grey;
+        text-decoration: underline;
+        transition: opacity .3s;
+
+        &:hover {
+            opacity: 0.7;
+        }
     }
 }
 </style>
