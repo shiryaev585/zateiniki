@@ -6,21 +6,25 @@
             </h1>
             <span class="anim-left anim-inner">Весь мир - театр, мы все - актеры поневоле, Всесильная Судьба распределяет роли, И небеса следят за нашею игрой!</span>
             <span class="anim-left anim-inner author">Пьер де Ронсар</span>
-            <ui-btn
-                v-observe
-                label="Связаться с нами"
-                class="btn anim-appear"
-                is-light
-                @click="globalStore.toggleModal(true)"
-            />
         </div>
+
+        <ui-btn
+            v-observe
+            label="Связаться с нами"
+            class="btn anim-appear"
+            is-light
+            @click="globalStore.toggleModal(true)"
+        />
+            
         <swiper
             class="slider-bg"
             :centered-slides="true"
             :parallax="true"
             :slides-per-view="3.5"
             :space-between="80"
-            controller-control=".slider-main"
+            :controller="{ control: mainSlider }"
+            :modules="[Controller]"
+            @swiper="setBgSlider"
             @slide-change="onSlideChange"
         >
             <swiper-slide
@@ -41,7 +45,7 @@
             class="slider-main"
             :centered-slides="true"
             :parallax="true"
-            controller-control=".slider-bg"
+            :controller="{ control: bgSlider }"
             :mousewheel="true"
             :breakpoints="{
                 0: {
@@ -53,6 +57,8 @@
                     spaceBetween: 80
                 }
             }"
+            :modules="[Controller]"
+            @swiper="setMainSlider"
             @slide-change="onSlideChange"
         >
             <swiper-slide
@@ -87,6 +93,7 @@
 import { register } from 'swiper/element/bundle';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
+import { Controller } from 'swiper/modules';
 import image_1 from '/images/index/intro_1.webp';
 import image_2 from '/images/index/intro_2.webp';
 import image_3 from '/images/index/intro_3.webp';
@@ -107,6 +114,14 @@ export default {
         const globalStore = useGlobalStore();
         const isModal = computed(() => globalStore.isModal);
         const sliderProgress = ref(false);
+        const mainSlider = ref(null);
+        const bgSlider = ref(null);
+        const setMainSlider = (swiper) => {
+            mainSlider.value = swiper;
+        };
+        const setBgSlider = (swiper) => {
+            bgSlider.value = swiper;
+        };
         const onSlideChange = ({ activeIndex }) => {
             images?.length === activeIndex + 1 ? sliderProgress.value = true : sliderProgress.value = false;
         };
@@ -116,6 +131,11 @@ export default {
             globalStore,
             isModal,
             sliderProgress,
+            Controller,
+            mainSlider,
+            bgSlider,
+            setMainSlider,
+            setBgSlider,
             onSlideChange
         };
     },
@@ -124,24 +144,34 @@ export default {
 
 <style lang="scss" scope>
 .intro {
+    --offset-x: 10%;
+
     height: 100vh;
     background: $dark50;
     color: #fff;
     overflow: hidden;
     position: relative;
 
+    @include sm-down {
+        --offset-x: 50%;
+    }
+
+    @include xs-down {
+        --offset-x: 2rem;
+    }
+
     &__text {
         font-family: $font-main;
         position: absolute;
         top: 20%;
-        left: 10%;
+        left: var(--offset-x);
         width: 20%;
+        pointer-events: none;
 
         @include sm-down {
             width: 40%;
             text-align: center;
             z-index: 2;
-            left: 50%;
             transform: translateX(-50%);
         }
 
@@ -149,7 +179,6 @@ export default {
             text-align: left;
             width: 90%;
             top: 25%;
-            left: 2rem;
             transform: none;
         }
 
@@ -177,10 +206,25 @@ export default {
                 }
             }
         }
+    }
 
-        & .btn {
-            position: relative;
-            z-index: 2;
+    & .btn {
+        position: absolute;
+        z-index: 2;
+        left: var(--offset-x);
+        top: 60%;
+
+        @include sm-down {
+            transform: translateX(-50%);
+        }
+
+        @include xs-down {
+            transform: none;
+        }
+
+        @media (max-height: 450px) {
+            transform: none;
+            left: 2rem;
         }
     }
 }
@@ -269,6 +313,13 @@ export default {
         bottom: 5%;
         transform: translateX(50%);
         width: 90%;
+    }
+
+    @media (max-height: 450px) {
+        width: 50%;
+        transform: none;
+        left: 2rem;
+        right: auto;
     }
 
     &.animated {

@@ -165,7 +165,7 @@ register();
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgb(0, 0, 0, 0.4);
+    background: rgb(0, 0, 0, 0.7);
     z-index: 12;
 
     & .close-btn {
@@ -186,7 +186,7 @@ register();
         z-index: 2;
         height: 5rem;
         width: 5rem;
-        background: rgba(0, 0, 0, .4);
+        background: rgba(0, 0, 0, .7);
         transition: opacity .3s;
 
         &:hover {
