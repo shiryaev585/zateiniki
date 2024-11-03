@@ -23,9 +23,17 @@ export default defineNuxtConfig({
         '~/plugins/observe-directive.js',
         '~/plugins/maska.js',
     ],
-    modules: ['@pinia/nuxt', '@nuxt/image', 'vue-yandex-maps/nuxt'],
+    modules: [
+        '@pinia/nuxt',
+        '@nuxt/image',
+        'vue-yandex-maps/nuxt',
+        'yandex-metrika-module-nuxt3',
+    ],
     yandexMaps: {
         apikey: process.env.YMAP_KEY,
+    },
+    yandexMetrika: {
+        id: process.env.YMETRIKA_ID
     },
     runtimeConfig: {
         public: {
