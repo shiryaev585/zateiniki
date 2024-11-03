@@ -1,6 +1,6 @@
 <template>
     <div class="intro">
-        <div v-observe class="intro__text anim-appear duration-4">
+        <div v-observe class="intro__text anim-appear">
             <h1 class="title anim-left anim-inner">
                 Театральная студия Затейники
             </h1>
@@ -17,6 +17,7 @@
         />
             
         <swiper
+            v-observe
             class="slider-bg"
             :centered-slides="true"
             :parallax="true"
@@ -28,21 +29,25 @@
             @slide-change="onSlideChange"
         >
             <swiper-slide
-                v-for="(image, idx) in images"
+                v-for="(slide, idx) in slides"
                 :key="idx"
                 class="slide"
             >
-                <div
+                <nuxt-img
                     class="slide__img"
                     data-swiper-parallax="50%"
-                    :style="{ backgroundImage: `url('${image}')` }"
-                >
-                </div>
+                    :src="slide.src"
+                    :srcset="slide.srcset"
+                    :sizes="slide.sizes"
+                    :alt="slide.alt"
+                    loading="lazy"
+                />
             </swiper-slide>
         </swiper>
 
         <swiper
-            class="slider-main"
+            v-observe
+            class="slider-main anim-appear delay-4"
             :centered-slides="true"
             :parallax="true"
             :controller="{ control: bgSlider }"
@@ -62,18 +67,21 @@
             @slide-change="onSlideChange"
         >
             <swiper-slide
-                v-for="(image, idx) in images"
+                v-for="(slide, idx) in slides"
                 :key="idx"
                 class="slide"
             >
                 <nuxt-link :to="menuRoutes[idx].path">
                     <span v-observe class="name anim-appear">{{ menuRoutes[idx].name }}</span>
-                    <div
+                    <nuxt-img
                         class="slide__img"
                         data-swiper-parallax="50%"
-                        :style="{ backgroundImage: `url('${image}')` }"
-                    >
-                    </div>
+                        :src="slide.src"
+                        :srcset="slide.srcset"
+                        :sizes="slide.sizes"
+                        :alt="slide.alt"
+                        loading="lazy"
+                    />
                 </nuxt-link>
             </swiper-slide>
         </swiper>
@@ -89,56 +97,47 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import { register } from 'swiper/element/bundle';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import { Controller } from 'swiper/modules';
-import image_1 from '/images/index/intro_1.webp';
-import image_2 from '/images/index/intro_2.webp';
-import image_3 from '/images/index/intro_3.webp';
 import { useGlobalStore } from '~/stores/global';
 
 register();
 
-export default {
-    name: 'IndexIntro',
-
-    components: {
-        Swiper,
-        SwiperSlide
+const slides = [
+    {
+        src: '/images/index/intro_1.webp',
+        srcset: '/images/index/intro_1-400w.webp 400w, /images/index/intro_1-600w.webp 600w, /images/index/intro_1-800w.webp 800w, /images/index/intro_1-1000w.webp 1000w, /images/index/intro_1-1200w.webp 1200w',
+        sizes: '(max-width: 400px) 400px, (max-width: 600px) 600px, (max-width: 800px) 800px, (max-width: 1000px) 1000px, (min-width: 1001px) 1200px',
+        alt: 'изображение театра, ссылка ведёт на страницу "о нас"'
     },
-
-    setup() {
-        const images = [image_1, image_2, image_3];
-        const globalStore = useGlobalStore();
-        const isModal = computed(() => globalStore.isModal);
-        const sliderProgress = ref(false);
-        const mainSlider = ref(null);
-        const bgSlider = ref(null);
-        const setMainSlider = (swiper) => {
-            mainSlider.value = swiper;
-        };
-        const setBgSlider = (swiper) => {
-            bgSlider.value = swiper;
-        };
-        const onSlideChange = ({ activeIndex }) => {
-            images?.length === activeIndex + 1 ? sliderProgress.value = true : sliderProgress.value = false;
-        };
-
-        return {
-            images,
-            globalStore,
-            isModal,
-            sliderProgress,
-            Controller,
-            mainSlider,
-            bgSlider,
-            setMainSlider,
-            setBgSlider,
-            onSlideChange
-        };
+    {
+        src: '/images/index/intro_2.webp',
+        srcset: '/images/index/intro_2-400w.webp 400w, /images/index/intro_2-600w.webp 600w, /images/index/intro_2-800w.webp 800w, /images/index/intro_2-1000w.webp 1000w, /images/index/intro_2-1200w.webp 1200w',
+        sizes: '(max-width: 400px) 400px, (max-width: 600px) 600px, (max-width: 800px) 800px, (max-width: 1000px) 1000px, (min-width: 1001px) 1200px',
+        alt: 'изображение театра, ссылка ведёт на страницу "Спектакли"'
     },
+    {
+        src: '/images/index/intro_3.webp',
+        srcset: '/images/index/intro_3-400w.webp 400w, /images/index/intro_3-600w.webp 600w, /images/index/intro_3-800w.webp 800w, /images/index/intro_3-1000w.webp 1000w, /images/index/intro_3-1200w.webp 1200w',
+        sizes: '(max-width: 400px) 400px, (max-width: 600px) 600px, (max-width: 800px) 800px, (max-width: 1000px) 1000px, (min-width: 1001px) 1200px',
+        alt: 'изображение театра, ссылка ведёт на страницу "Контакты"'
+    }
+];
+const globalStore = useGlobalStore();
+const sliderProgress = ref(false);
+const mainSlider = ref(null);
+const bgSlider = ref(null);
+const setMainSlider = (swiper) => {
+    mainSlider.value = swiper;
+};
+const setBgSlider = (swiper) => {
+    bgSlider.value = swiper;
+};
+const onSlideChange = ({ activeIndex }) => {
+    slides?.length === activeIndex + 1 ? sliderProgress.value = true : sliderProgress.value = false;
 };
 </script>
 
@@ -254,8 +253,13 @@ export default {
     top: 10vh;
     left: -20vw;
     z-index: 0;
-    opacity: .25;
+    opacity: 0;
+    transition: opacity .75s .2s;
     filter: saturate(100) blur(100px);
+
+    &.animated {
+        opacity: 0.25;
+    }
 
     & .slide {
         max-height: 100vh !important;
@@ -272,9 +276,8 @@ export default {
         width: 300%;
         height: 100%;
         left: -40%;
-        background-position: 50% 50%;
-        background-size: cover;
-        background-repeat: no-repeat;
+        object-fit: cover;
+        will-change: scroll-position;
 
         @include sm-down {
             width: 120%;
@@ -285,6 +288,7 @@ export default {
 
     & .name {
         color: #fff;
+        display: block;
 
         @include sm-down {
             position: absolute;
