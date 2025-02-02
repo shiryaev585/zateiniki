@@ -11,13 +11,15 @@
     </div>
 </template>
 
-<script setup>
-defineProps({
-    teacher: {
-        type: Array,
-        required: true
-    }
-});
+<script setup lang="ts">
+interface Teacher {
+    text: string;
+    image: string;
+}
+
+defineProps<{
+    teacher: Teacher[];
+}>();
 </script>
 
 <style lang="scss" scoped>

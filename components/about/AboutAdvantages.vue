@@ -22,8 +22,14 @@
     </div>
 </template>
 
-<script setup>
-const advantages = reactive([
+<script setup lang="ts">
+interface Advantage {
+    icon: string,
+    advantage: string,
+    id: number
+}
+
+const advantages: Advantage[] = reactive([
     {
         icon: '/icons/advantages/1.svg',
         advantage: 'развить творческий потенциал',

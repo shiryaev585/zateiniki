@@ -12,18 +12,11 @@
     </div>
 </template>
 
-<script setup>
-defineProps({
-    title: {
-        type: String,
-        default: ''
-    },
-
-    src: {
-        type: String,
-        required: true
-    }
-});
+<script setup lang="ts">
+defineProps<{
+    title: string,
+    src: string,
+}>();
 </script>
 
 <style lang="scss" scoped>
