@@ -5,7 +5,7 @@
             <p class="color-light-grey">
                 Занятия проходят в здании 4 корпуса школы 1566
             </p>
-            <button class="btn" @click="scrollElementIntoView(map.$el)">
+            <button class="btn" @click="scrollToMap">
                 <nuxt-img
                     src="/icons/arrow.svg"
                     alt="arrow-icon"
@@ -20,14 +20,12 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useFooterStore } from '~/stores/footer';
-import IntroBlock from '~/components/blocks/IntroBlock.vue';
-import ContactBlock from '~/components/blocks/ContactBlock.vue';
-import MapBlock from '~/components/blocks/MapBlock.vue';
+import { IntroBlock, ContactBlock, MapBlock } from '~/components/blocks';
 
 const footerStore = useFooterStore();
-const map = ref(null);
+const map = ref<InstanceType<typeof MapBlock> | null>(null);
 
 useHead({
     title: 'Затейники | Театральная студия в Марьино | Контакты',
@@ -45,6 +43,14 @@ useHead({
 onMounted(() => {
     footerStore.setFooter(true);
 });
+
+const scrollToMap = () => {
+    if (map.value) {
+        scrollElementIntoView(map.value.$el);
+    } else {
+        console.error('map is not initialized');
+    }
+};
 </script>
 
 <style lang="scss" scoped>

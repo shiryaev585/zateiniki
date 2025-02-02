@@ -1,17 +1,22 @@
 import { defineStore } from 'pinia';
 
+interface HeaderState {
+    isScrolled: boolean;
+    isMenuOpened: boolean;
+}
+
 export const useHeaderStore = defineStore('header', {
-    state: () => ({
+    state: (): HeaderState => ({
         isScrolled: false,
         isMenuOpened: false,
     }),
 
     actions: {
-        checkHeader(payload) {
+        checkHeader(payload: boolean): void {
             this.isScrolled = payload;
         },
 
-        toggleMenu(payload) {
+        toggleMenu(payload: boolean): void {
             this.isMenuOpened = payload;
         },
     },

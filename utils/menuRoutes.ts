@@ -1,4 +1,10 @@
-export const menuRoutes = [
+interface MenuRoute {
+    id: number;
+    path: string;
+    name: string;
+}
+
+export const menuRoutes:MenuRoute[] = [
     {
         id: 1,
         name: 'О нас',

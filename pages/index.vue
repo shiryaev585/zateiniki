@@ -4,7 +4,7 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useFooterStore } from '~/stores/footer';
 
 const footerStore = useFooterStore();

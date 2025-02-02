@@ -1,4 +1,6 @@
-﻿export default defineNuxtRouteMiddleware((to, from) => {
+﻿import { type RouteLocationNormalized } from 'vue-router';
+
+export default defineNuxtRouteMiddleware((to: RouteLocationNormalized, from: RouteLocationNormalized) => {
     if (to.path !== '/' && to.path.endsWith('/')) {
         const { path, query, hash } = to;
         const nextPath = path.replace(/\/+$/, '') || '/';
@@ -6,4 +8,3 @@
         return navigateTo(nextRoute, { redirectCode: 301 });
     }
 });
-  

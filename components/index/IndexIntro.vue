@@ -97,16 +97,27 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { register } from 'swiper/element/bundle';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import { Controller } from 'swiper/modules';
 import { useGlobalStore } from '~/stores/global';
 
+interface Slide {
+    src: string;
+    srcset: string;
+    sizes: string;
+    alt: string;
+}
+
+interface SwiperInstance {
+    activeIndex: number;
+}
+
 register();
 
-const slides = [
+const slides: Slide[] = [
     {
         src: '/images/index/intro_1.webp',
         srcset: '/images/index/intro_1-400w.webp 400w, /images/index/intro_1-600w.webp 600w, /images/index/intro_1-800w.webp 800w, /images/index/intro_1-1000w.webp 1000w, /images/index/intro_1-1200w.webp 1200w',
@@ -126,18 +137,23 @@ const slides = [
         alt: 'изображение театра, ссылка ведёт на страницу "Контакты"'
     }
 ];
+
 const globalStore = useGlobalStore();
-const sliderProgress = ref(false);
-const mainSlider = ref(null);
-const bgSlider = ref(null);
-const setMainSlider = (swiper) => {
+
+const sliderProgress = ref<boolean>(false);
+const mainSlider = ref<SwiperInstance | null>(null);
+const bgSlider = ref<SwiperInstance | null>(null);
+
+const setMainSlider = (swiper: SwiperInstance): void => {
     mainSlider.value = swiper;
 };
-const setBgSlider = (swiper) => {
+
+const setBgSlider = (swiper: SwiperInstance): void => {
     bgSlider.value = swiper;
 };
-const onSlideChange = ({ activeIndex }) => {
-    slides?.length === activeIndex + 1 ? sliderProgress.value = true : sliderProgress.value = false;
+
+const onSlideChange = ({ activeIndex }: { activeIndex: number }): void => {
+    sliderProgress.value = slides.length === activeIndex + 1;
 };
 </script>
 

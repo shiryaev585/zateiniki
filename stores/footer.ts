@@ -1,12 +1,16 @@
 import { defineStore } from 'pinia';
 
+interface FooterState {
+    isVisible: boolean;
+}
+
 export const useFooterStore = defineStore('footer', {
-    state: () => ({
+    state: (): FooterState => ({
         isVisible: true,
     }),
 
     actions: {
-        setFooter(payload) {
+        setFooter(payload: boolean): void {
             this.isVisible = payload;
         },
     },

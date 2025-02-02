@@ -1,4 +1,4 @@
-export const useApi = (endpoint, opts) => {
+export const useApi = (endpoint: string, opts: object) => {
     const config = useRuntimeConfig();
 
     return useFetch(endpoint, {

@@ -1,4 +1,17 @@
-export const contacts = {
+interface ContactInfo {
+    value: string;
+    type?: string;
+    href?: string;
+}
+
+interface Contacts {
+    phone: ContactInfo;
+    email: ContactInfo;
+    address: ContactInfo;
+    coords: [number, number];
+}
+
+export const contacts: Contacts = {
     phone: {
         value: '+7(903)289-71-95',
         type: 'tel:'
@@ -13,4 +26,3 @@ export const contacts = {
     },
     coords: [37.747415, 55.649809]
 };
-

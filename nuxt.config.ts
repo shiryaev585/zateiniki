@@ -20,21 +20,21 @@ export default defineNuxtConfig({
         },
     },
     plugins: [
-        '~/plugins/observe-directive.js',
-        '~/plugins/maska.js',
+        '~/plugins/observe-directive',
+        '~/plugins/maska',
     ],
     modules: [
         '@pinia/nuxt',
         '@nuxt/image',
         'vue-yandex-maps/nuxt',
-        'yandex-metrika-module-nuxt3',
+        // 'yandex-metrika-module-nuxt3',
     ],
     yandexMaps: {
         apikey: process.env.YMAP_KEY,
     },
-    yandexMetrika: {
-        id: process.env.YMETRIKA_ID
-    },
+    // yandexMetrika: {
+    //     id: process.env.YMETRIKA_ID
+    // },
     runtimeConfig: {
         public: {
             requestUrl: process.env.REQUEST_URL,

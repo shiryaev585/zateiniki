@@ -7,9 +7,7 @@
 </template>
 <script setup>
 import { useFooterStore } from '~/stores/footer';
-import IntroBlock from '~/components/blocks/IntroBlock.vue';
-import ContentBlock from '~/components/blocks/ContentBlock.vue';
-import PhotoBlock from '~/components/blocks/PhotoBlock.vue';
+import { IntroBlock, ContentBlock, PhotoBlock } from '~/components/blocks';
 
 const footerStore = useFooterStore();
 

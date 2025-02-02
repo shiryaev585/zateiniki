@@ -11,7 +11,7 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import SiteHeader from '~/components/default/SiteHeader.vue';
 import SiteMenu from '~/components/default/SiteMenu.vue';
 import SiteModal from '~/components/default/SiteModal.vue';
@@ -20,7 +20,7 @@ import SiteFooter from '~/components/default/SiteFooter.vue';
 import { useGlobalStore } from '~/stores/global';
 
 const globalStore = useGlobalStore();
-const showPreloader = computed(() => globalStore.showPreloader);
+const showPreloader = computed<boolean>(() => globalStore.showPreloader);
 </script>
 
 <style lang="scss" module>
