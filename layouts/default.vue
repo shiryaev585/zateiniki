@@ -12,11 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import SiteHeader from '~/components/default/SiteHeader.vue';
-import SiteMenu from '~/components/default/SiteMenu.vue';
-import SiteModal from '~/components/default/SiteModal.vue';
-import SitePreloader from '~/components/default/SitePreloader.vue';
-import SiteFooter from '~/components/default/SiteFooter.vue';
+import { SiteHeader, SiteMenu, SiteModal, SitePreloader, SiteFooter } from '~/components/default';
 import { useGlobalStore } from '~/stores/global';
 
 const globalStore = useGlobalStore();
