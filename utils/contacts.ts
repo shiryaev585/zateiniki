@@ -1,10 +1,10 @@
-interface ContactInfo {
+export interface ContactInfo {
     value: string;
     type?: string;
     href?: string;
 }
 
-interface Contacts {
+export interface Contacts {
     phone: ContactInfo;
     email: ContactInfo;
     address: ContactInfo;

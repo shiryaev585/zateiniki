@@ -101,26 +101,15 @@
     </footer>
 </template>
 
-<script>
+<script setup lang="ts">
 import { useFooterStore } from '~/stores/footer';
+import { type ContactInfo } from '~/utils/contacts';
 
-export default {
-    name: 'SiteFooter',
-
-    setup() {
-        const footerStore = useFooterStore();
-        const isFooterVisible = computed(() => footerStore.isVisible);
-        const contactsList = computed(() => Object.values(contacts)
-            ?.filter((item) => item?.value && item));
-        const whatsupPhone = computed(() => contacts.phone.value?.replace(/\D/g, ''));
-
-        return {
-            isFooterVisible,
-            contactsList,
-            whatsupPhone
-        };
-    }
-};
+const footerStore = useFooterStore();
+const isFooterVisible = computed<boolean>(() => footerStore.isVisible);
+const contactsList = computed(() => Object.values(contacts)
+    ?.filter((item: ContactInfo) => item?.value && item));
+const whatsupPhone = computed<string>(() => contacts.phone.value?.replace(/\D/g, ''));
 </script>
 
 <style lang="scss" scoped>

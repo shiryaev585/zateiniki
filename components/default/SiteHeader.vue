@@ -47,49 +47,37 @@
     </header>
 </template>
 
-<script>
+<script setup lang="ts">
 import { useHeaderStore } from '~/stores/header';
 import { useGlobalStore } from '~/stores/global';
 
-export default {
-    name: 'SiteHeader',
+const isScrolled = ref<boolean>(false);
+const headerStore = useHeaderStore();
+const globalStore = useGlobalStore();
+const isMenuOpened = computed<boolean>(() => headerStore.isMenuOpened);
 
-    setup() {
-        const isScrolled = ref(false);
-        const headerStore = useHeaderStore();
-        const globalStore = useGlobalStore();
-        const isMenuOpened = computed(() => headerStore.isMenuOpened);
+const checkScroll = (): void => {
+    const currentScroll: boolean = window.scrollY > 5;
 
-        const checkScroll = () => {
-            const currentScroll = window.scrollY > 5;
-
-            if (isScrolled === currentScroll) { return; }
-            isScrolled.value = currentScroll;
-        };
-
-        const toggleMenu = () => {
-            headerStore.isMenuOpened ? headerStore.toggleMenu(false) : headerStore.toggleMenu(true);
-        };
-
-        return {
-            isScrolled,
-            isMenuOpened,
-            checkScroll,
-            toggleMenu,
-            headerStore,
-            globalStore
-        };
-    },
-
-    mounted () {
-        window.addEventListener('scroll', this.checkScroll);
-    },
-
-    beforeUnmount () {
-        window.removeEventListener('scroll', this.checkScroll);
-    }
-
+    if (isScrolled.value === currentScroll) return;
+    isScrolled.value = currentScroll;
 };
+
+const toggleMenu = (): void => {
+    if (headerStore.isMenuOpened) {
+        headerStore.toggleMenu(false);
+    } else {
+        headerStore.toggleMenu(true);
+    }
+};
+
+onMounted(() => {
+    window.addEventListener('scroll', checkScroll);
+});
+
+onBeforeMount(() => {
+    window.removeEventListener('scroll', checkScroll);
+});
 </script>
 
 <style lang="scss" scoped>

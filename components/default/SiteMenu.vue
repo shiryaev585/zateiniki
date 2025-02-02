@@ -19,32 +19,17 @@
     </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import { useHeaderStore } from '~/stores/header';
 import { useGlobalStore } from '~/stores/global';
 
-export default {
-    name: 'SiteMenu',
+const headerStore = useHeaderStore();
+const globalStore = useGlobalStore();
+const isMenuOpened = computed<boolean>(() => headerStore.isMenuOpened);
 
-    setup() {
-        const headerStore = useHeaderStore();
-        const globalStore = useGlobalStore();
-
-        const isMenuOpened = computed(() => headerStore.isMenuOpened);
-
-        return {
-            isMenuOpened,
-            headerStore,
-            globalStore
-        };
-    },
-
-    watch: {
-        isMenuOpened() {
-            this.globalStore.toggleBodyLocked();
-        }
-    }
-};
+watch(isMenuOpened, () => {
+    globalStore.toggleBodyLocked();
+});
 </script>
 
 <style lang="scss" scoped>

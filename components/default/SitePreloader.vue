@@ -4,24 +4,17 @@
     </div>
 </template>
 
-<script>
-export default {
-    name: 'SitePreloader',
-
-    props: {
-        showPreloader: {
-            type: Boolean,
-            default: false
-        },
-
-        isLight: {
-            type: Boolean,
-            default: false
-        }
+<script setup lang="ts">
+withDefaults(
+    defineProps<{
+        showPreloader: boolean,
+        isLight?: boolean
+    }>(), {
+        showPreloader: false,
+        isLight: false
     }
-};
+);
 </script>
-
 
 <style lang="scss" scoped>
 .loader {
