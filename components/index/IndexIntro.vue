@@ -100,6 +100,7 @@
 <script setup lang="ts">
 import { register } from 'swiper/element/bundle';
 import { Swiper, SwiperSlide } from 'swiper/vue';
+import SwiperInstance from 'swiper';
 import 'swiper/css';
 import { Controller } from 'swiper/modules';
 import { useGlobalStore } from '~/stores/global';
@@ -109,10 +110,6 @@ interface Slide {
     srcset: string;
     sizes: string;
     alt: string;
-}
-
-interface SwiperInstance {
-    activeIndex: number;
 }
 
 register();

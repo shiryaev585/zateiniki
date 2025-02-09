@@ -48,7 +48,8 @@ const focused = ref<boolean>(false);
 
 const handleInput = (event: Event) => {
     const target = event.target as HTMLInputElement;
-    emit('update:modelValue', target.value);
+    const value = target.value.trim();
+    emit('update:modelValue', value);
 };
 </script>
 
