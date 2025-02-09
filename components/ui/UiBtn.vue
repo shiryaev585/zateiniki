@@ -9,32 +9,18 @@
     </component>
 </template>
 
-<script>
-export default {
-    name: 'UiBtn',
-
-    props: {
-        url: {
-            type: String,
-            default: ''
-        },
-
-        label: {
-            type: String,
-            default: ''
-        },
-
-        isLight: {
-            type: Boolean,
-            default: false
-        },
-
-        isDark: {
-            type: Boolean,
-            default: false
-        },
-    }
-};
+<script setup lang="ts">
+withDefaults(defineProps<{
+    url?: string,
+    label?: string,
+    isLight?: boolean,
+    isDark?: boolean,
+}>(), {
+    url: '',
+    label: '',
+    isLight: false,
+    isDark: false,
+});
 </script>
 
 <style lang="scss" scoped>

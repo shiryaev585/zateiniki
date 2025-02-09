@@ -13,55 +13,43 @@
             :type="type"
             @focus="focused = true"
             @blur="focused = false"
-            @input="$emit('update:modelValue', $event.target.value)"
+            @input="handleInput"
         />
     </div>
 </template>
 
-<script setup>
-defineEmits(['update:modelValue']);
-defineProps({
-    label: {
-        type: String,
-        default: ''
-    },
+<script setup lang="ts">
+interface Props {
+    label?: string;
+    name?: string;
+    type?: string;
+    modelValue?: string | number | null;
+    disabled?: boolean;
+    required?: boolean;
+    maskData?: string;
+    isLight?: boolean;
+}
 
-    name: {
-        type: String,
-        default: ''
-    },
-
-    type: {
-        type: String,
-        default: ''
-    },
-
-    modelValue: {
-        type: [String, Number],
-        default: null
-    },
-
-    disabled: {
-        type: Boolean,
-        default: false
-    },
-
-    required: {
-        type: Boolean,
-        default: false
-    },
-        
-    maskData: {
-        type: String,
-        default: ''
-    },
-
-    isLight: {
-        type: Boolean,
-        default: false
-    }
+withDefaults(defineProps<Props>(), {
+    label: '',
+    name: '',
+    type: 'text',
+    modelValue: null,
+    disabled: false,
+    required: false,
+    maskData: '',
+    isLight: false,
 });
-const focused = ref(false);
+
+const emit = defineEmits<{
+    (event: 'update:modelValue', value: string | number | null): void;
+}>();
+const focused = ref<boolean>(false);
+
+const handleInput = (event: Event) => {
+    const target = event.target as HTMLInputElement;
+    emit('update:modelValue', target.value);
+};
 </script>
 
 <style lang="scss" scoped>

@@ -7,13 +7,10 @@
     </button>
 </template>
 
-<script setup>
-defineProps({
-    color: {
-        type: String,
-        required: true
-    }
-});
+<script setup lang="ts">
+defineProps<{
+    color: string
+}>();
 
 const emits = defineEmits(['close']);
 </script>
