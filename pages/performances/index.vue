@@ -9,7 +9,7 @@
 import type { MetaObject } from 'nuxt/schema';
 import { useFooterStore } from '~/stores/footer';
 import { IntroBlock, ContentBlock, PhotoBlock } from '~/components/blocks';
-import { type MediaItem } from '~/utils/types';
+import { type MediaItem, type ContentItem } from '~/utils/types';
 
 const head: MetaObject = {
     title: 'Затейники | Театральная студия в Марьино | Спектакли',
@@ -28,28 +28,25 @@ useHead(head);
 
 const footerStore = useFooterStore();
 
-interface Video {
-    source_url: string,
-    video_src: string,
-    alt_text: string
-}
-
-const videos: Video[] = [{
+const videos: ContentItem[] = [{
+    id: 1,
     source_url: '/images/index/intro_1.webp',
     video_src: 'https://www.youtube.com/embed/iNXNO2V0eoU?si=q69DYjhrwq1_I9ri',
     alt_text: 'видео выступления'
 },{
+    id: 2,
     source_url: '/images/index/intro_2.webp',
     video_src: 'https://www.youtube.com/embed/xWVhf8s60eI?si=9DOz9eWUhzZbVeJJ',
     alt_text: 'видео выступления'
 },{
+    id: 3,
     source_url: '/images/index/intro_3.webp',
     video_src: 'https://www.youtube.com/embed/LlVVv86XCmM?si=dTHgAsUFqo1LlKA3',
     alt_text: 'видео выступления'
 }];
 
 const { data: media } = await useApi<MediaItem[]>('/media/', { method: 'GET', query: { per_page: 100 } });
-const performances = computed(() => media.value?.filter((item) => item?.link?.includes('performances')));
+const performances = computed(() => media.value?.filter((item: ContentItem) => item?.link?.includes('performances')));
 
 onMounted(() => {
     footerStore.setFooter(true);
