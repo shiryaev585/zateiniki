@@ -22,7 +22,7 @@
 <script setup lang="ts">
 import type { MetaObject } from 'nuxt/schema';
 import { useFooterStore } from '~/stores/footer';
-import { type MediaItem, type Teacher } from '~/utils/types';
+import { type ContentItem, type Teacher } from '~/utils/types';
 import { IntroBlock, ContentBlock, ContactBlock, PhotoBlock } from '~/components/blocks';
 
 const footerStore = useFooterStore();
@@ -51,9 +51,9 @@ const description = computed(() => about.value?.map((item) => item?.text).revers
 
 const { data: teacher } = await useApi<Teacher[]>('/teacher/', { method: 'GET' });
 
-const { data: media } = await useApi<MediaItem[]>('/media/', { method: 'GET', query: { per_page: 100 } });
-const charity = computed(() => media.value?.filter((item) => item?.link?.includes('charity')).reverse());
-const diplomas = computed(() => media.value?.filter((item) => item?.link?.includes('diplomas')).reverse());
+const { data: media } = await useApi<ContentItem[]>('/media/', { method: 'GET', query: { per_page: 100 } });
+const charity = computed(() => media.value?.filter((item: ContentItem) => item?.link?.includes('charity')).reverse());
+const diplomas = computed(() => media.value?.filter((item: ContentItem) => item?.link?.includes('diplomas')).reverse());
 
 onMounted(() => {
     footerStore.setFooter(true);

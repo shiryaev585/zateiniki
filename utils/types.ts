@@ -1,8 +1,3 @@
-export interface MediaItem {
-    id: number,
-    link?: string
-}
-
 export interface ContentItem {
     id: number,
     video_src?: string;

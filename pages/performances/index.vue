@@ -9,7 +9,7 @@
 import type { MetaObject } from 'nuxt/schema';
 import { useFooterStore } from '~/stores/footer';
 import { IntroBlock, ContentBlock, PhotoBlock } from '~/components/blocks';
-import { type MediaItem, type ContentItem } from '~/utils/types';
+import { type ContentItem } from '~/utils/types';
 
 const head: MetaObject = {
     title: 'Затейники | Театральная студия в Марьино | Спектакли',
@@ -45,7 +45,7 @@ const videos: ContentItem[] = [{
     alt_text: 'видео выступления'
 }];
 
-const { data: media } = await useApi<MediaItem[]>('/media/', { method: 'GET', query: { per_page: 100 } });
+const { data: media } = await useApi<ContentItem[]>('/media/', { method: 'GET', query: { per_page: 100 } });
 const performances = computed(() => media.value?.filter((item: ContentItem) => item?.link?.includes('performances')));
 
 onMounted(() => {

@@ -34,47 +34,39 @@
     </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import { useGlobalStore } from '~/stores/global';
 
-export default {
-    name: 'SiteModal',
+interface Form {
+    name: string,
+    phone: string,
+    email?: string
+}
 
-    async setup() {
-        const globalStore = useGlobalStore();
-        const isModal = computed(() => globalStore.isModal);
-        const form = reactive({});
+const config = useRuntimeConfig();
+const globalStore = useGlobalStore();
+const isModal = computed<boolean>(() => globalStore.isModal);
+const form = reactive<Form>({ name: '', phone: '' });
 
-        return {
-            globalStore,
-            isModal,
-            form
-        };
-    },
-
-    methods: {
-        async submit() {
-            const formData = new FormData();
-            formData.append('name', this.form?.name);
-            formData.append('phone', this.form?.phone);
-            this.globalStore.togglePreloader(true);
-            try {
-                const res = await fetch(this.$config?.public?.requestUrl, {
-                    method: 'POST',
-                    body: formData,
-                    headers: { Accept: 'application/json' },
-                });
-                this.form.name = '';
-                this.form.phone = '';
-                if (res.ok) {
-                    this.globalStore.toggleModal(false);
-                }
-            } catch (e) {
-                console.error(e);
-            } finally {
-                this.globalStore.togglePreloader(false);
-            }
+const submit = async () => {
+    const formData = new FormData();
+    formData.append('name', form?.name);
+    formData.append('phone', form?.phone);
+    try {
+        const res = await useApi(config.public.requestUrl, {
+            method: 'POST',
+            body: formData,
+            headers: { Accept: 'application/json' },
+        });
+        if (res.data) {
+            globalStore.toggleModal(false);
         }
+        form.name = '';
+        form.phone = '';
+    } catch (e) {
+        console.error(e);
+    } finally {
+        globalStore.togglePreloader(false);
     }
 };
 </script>
