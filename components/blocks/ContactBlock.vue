@@ -68,28 +68,30 @@
     </div>
 </template>
 
-<script setup>
-import SitePreloader from '~/components/default/SitePreloader.vue';
+<script setup lang="ts">
+import { SitePreloader } from '~/components/default';
 
-defineProps({
-    title: {
-        type: String,
-        default: ''
-    },
-
-    lightBg: {
-        type: Boolean,
-        default: false
-    }
+withDefaults(defineProps<{
+    title?: string,
+    lightBg?: boolean
+}>(), {
+    title: '',
+    lightBg: false
 });
 
+interface Form {
+    name: string,
+    phone: string,
+    email?: string
+}
+
 const config = useRuntimeConfig();
-const form = reactive({});
-const showPreloader = ref(false);
-const success = ref(false);
-const phoneHref = computed(() => contacts.phone.type + contacts.phone.value?.replace(/(\()|(\)|(-))/g, ''));
-const emailHref = computed(() => contacts.email.type + contacts.email.value);
-const addressHref = computed(() => contacts.address.href);
+const form = reactive<Form>({ name: '', phone: '' });
+const showPreloader = ref<boolean>(false);
+const success = ref<boolean>(false);
+const phoneHref = computed<string>(() => contacts?.phone?.type + contacts?.phone?.value?.replace(/(\()|(\)|(-))/g, ''));
+const emailHref = computed<string>(() => contacts?.email?.type + contacts?.email?.value);
+const addressHref = computed<string>(() => contacts?.address?.href || '');
 
 const submit = async () => {
     const formData = new FormData();
@@ -97,12 +99,12 @@ const submit = async () => {
     formData.append('phone', form?.phone);
     showPreloader.value = true;
     try {
-        const res = await fetch(config.public.requestUrl, {
+        const res = await useApi(config.public.requestUrl, {
             method: 'POST',
             body: formData,
             headers: { Accept: 'application/json' },
         });
-        if (res.ok) {
+        if (res.data) {
             success.value = true;
         }
         form.name = '';

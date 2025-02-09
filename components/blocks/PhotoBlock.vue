@@ -64,40 +64,37 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Navigation } from 'swiper/modules';
 import { register } from 'swiper/element/bundle';
 import { useGlobalStore } from '~/stores/global';
+import { type ContentItem } from '~/utils/types';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-defineProps({
-    photos: {
-        type: Object,
-        required: true
-    },
-
-    title: {
-        type: String,
-        default: ''
-    }
+withDefaults(defineProps<{
+    title: string
+    photos: ContentItem[]
+}>(), {
+    title: '',
+    photos: () => []
 });
 
 const swiper = Swiper;
 const swiperSlide = SwiperSlide;
 const globalStore = useGlobalStore();
-const isSlider = ref(false);
-const activeSlide = ref(0);
+const isSlider = ref<boolean>(false);
+const activeSlide = ref<number>(0);
 
-const initSlider = (idx) => {
+const initSlider = (idx: number): void => {
     isSlider.value = true;
     globalStore.toggleBodyLocked();
     activeSlide.value = idx;
 };
 
-const hideSlider = () => {
+const hideSlider = (): void => {
     isSlider.value = false;
     activeSlide.value = 0;
     globalStore.toggleBodyLocked();

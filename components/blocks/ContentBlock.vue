@@ -43,36 +43,34 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useGlobalStore } from '~/stores/global';
+import { type ContentItem } from '~/utils/types';
 
-const props = defineProps({
-    content: {
-        type: Array,
-        required: true
-    },
-
-    withFrame: {
-        type: Boolean,
-        default: false
-    }
+const props = withDefaults(defineProps<{
+    content?: ContentItem[],
+    withFrame?: boolean
+}>(), {
+    content: () => [],
+    withFrame: false
 });
 
 const globalStore = useGlobalStore();
-const activeSrc = ref('');
-const altText = ref('');
 
-const setActiveItem = (item) => {
+const activeSrc = ref<string>('');
+const altText = ref<string>('');
+
+const setActiveItem = (item: ContentItem): void => {
     if (props.withFrame) {
-        activeSrc.value = item?.video_src;
+        activeSrc.value = item?.video_src || '';
     } else {
-        activeSrc.value = item?.source_url;
-        altText.value = item?.alt_text;
+        activeSrc.value = item?.source_url || '';
+        altText.value = item?.alt_text || '';
     }
     globalStore.toggleBodyLocked();
 };
 
-const closeModal = () => {
+const closeModal = (): void => {
     globalStore.toggleBodyLocked();
     activeSrc.value = '';
     altText.value = '';
