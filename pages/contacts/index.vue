@@ -23,11 +23,9 @@
 <script setup lang="ts">
 import { useFooterStore } from '~/stores/footer';
 import { IntroBlock, ContactBlock, MapBlock } from '~/components/blocks';
+import type { MetaObject } from 'nuxt/schema';
 
-const footerStore = useFooterStore();
-const map = ref<InstanceType<typeof MapBlock> | null>(null);
-
-useHead({
+const head: MetaObject = {
     title: 'Затейники | Театральная студия в Марьино | Контакты',
     meta: [
         { name: 'description', content: 'Набор в театральную студию детей школьного возраста - запишите своего ребёнка на курсы театрального искусства в театральной студии Затейники в Марьино. Поможем сформировать и развить эстетическую культуру личности ребёнка, предоставим возможность раскрытия индивидуального творческого потенциала. Ваш ребёнок будет выступать на настоящей сцене.' },
@@ -38,7 +36,12 @@ useHead({
         { property: 'og:locale', content: 'ru_RU' },
         { property: 'og:image', content: 'https://zateinikiteatr.online/wp-content/uploads/2024/10/5-1-scaled.webp' },
     ],
-});
+};
+
+useHead(head);
+
+const footerStore = useFooterStore();
+const map = ref<InstanceType<typeof MapBlock> | null>(null);
 
 onMounted(() => {
     footerStore.setFooter(true);

@@ -19,13 +19,15 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import type { MetaObject } from 'nuxt/schema';
 import { useFooterStore } from '~/stores/footer';
+import { type MediaItem, type Teacher } from '~/utils/types';
 import { IntroBlock, ContentBlock, ContactBlock, PhotoBlock } from '~/components/blocks';
 
 const footerStore = useFooterStore();
 
-useHead({
+const head: MetaObject = {
     title: 'Затейники | Театральная студия в Марьино | О нас',
     meta: [
         { name: 'description', content: 'Набор в театральную студию детей школьного возраста - запишите своего ребёнка на курсы театрального искусства в театральной студии Затейники в Марьино. Поможем сформировать и развить эстетическую культуру личности ребёнка, предоставим возможность раскрытия индивидуального творческого потенциала. , благотворительность' },
@@ -36,14 +38,20 @@ useHead({
         { property: 'og:locale', content: 'ru_RU' },
         { property: 'og:image', content: 'https://zateinikiteatr.online/wp-content/uploads/2024/10/16-scaled.webp' },
     ],
-});
+};
 
-const { data: about } = await useApi('/about/');
+useHead(head);
+
+interface AboutItem {
+    text: string;
+}
+
+const { data: about } = await useApi<AboutItem[]>('/about/', { method: 'GET' });
 const description = computed(() => about.value?.map((item) => item?.text).reverse());
 
-const { data: teacher } = await useApi('/teacher/');
+const { data: teacher } = await useApi<Teacher[]>('/teacher/', { method: 'GET' });
 
-const { data: media } = await useApi('/media/', { query: { per_page: 100 } });
+const { data: media } = await useApi<MediaItem[]>('/media/', { method: 'GET', query: { per_page: 100 } });
 const charity = computed(() => media.value?.filter((item) => item?.link?.includes('charity')).reverse());
 const diplomas = computed(() => media.value?.filter((item) => item?.link?.includes('diplomas')).reverse());
 

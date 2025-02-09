@@ -5,13 +5,36 @@
         <photo-block :photos="performances" title="Наши выступления и репетиции" class="block" />
     </div>
 </template>
-<script setup>
+<script setup lang="ts">
+import type { MetaObject } from 'nuxt/schema';
 import { useFooterStore } from '~/stores/footer';
 import { IntroBlock, ContentBlock, PhotoBlock } from '~/components/blocks';
+import { type MediaItem } from '~/utils/types';
+
+const head: MetaObject = {
+    title: 'Затейники | Театральная студия в Марьино | Спектакли',
+    meta: [
+        { name: 'description', content: 'Детская театральная студия в Марьино, спектакли, выступления, репетиции, благотворительность' },
+        { property: 'og:title', content: 'Затейники | Театральная студия в Марьино | Спектакли' },
+        { property: 'og:description', content: 'Набор в театральную студию детей школьного возраста - запишите своего ребёнка на курсы театрального искусства в театральной студии Затейники в Марьино. Поможем сформировать и развить эстетическую культуру личности ребёнка, предоставим возможность раскрытия индивидуального творческого потенциала. Ваш ребёнок будет выступать на настоящей сцене.' },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:url', content: 'https://zateinikiteatr.ru' },
+        { property: 'og:locale', content: 'ru_RU' },
+        { property: 'og:image', content: 'https://zateinikiteatr.online/wp-content/uploads/2024/10/18.webp' },
+    ],
+};
+
+useHead(head);
 
 const footerStore = useFooterStore();
 
-const videos = [{
+interface Video {
+    source_url: string,
+    video_src: string,
+    alt_text: string
+}
+
+const videos: Video[] = [{
     source_url: '/images/index/intro_1.webp',
     video_src: 'https://www.youtube.com/embed/iNXNO2V0eoU?si=q69DYjhrwq1_I9ri',
     alt_text: 'видео выступления'
@@ -25,20 +48,7 @@ const videos = [{
     alt_text: 'видео выступления'
 }];
 
-useHead({
-    title: 'Затейники | Театральная студия в Марьино | Спектакли',
-    meta: [
-        { name: 'description', content: 'Детская театральная студия в Марьино, спектакли, выступления, репетиции, благотворительность' },
-        { property: 'og:title', content: 'Затейники | Театральная студия в Марьино | Спектакли' },
-        { property: 'og:description', content: 'Набор в театральную студию детей школьного возраста - запишите своего ребёнка на курсы театрального искусства в театральной студии Затейники в Марьино. Поможем сформировать и развить эстетическую культуру личности ребёнка, предоставим возможность раскрытия индивидуального творческого потенциала. Ваш ребёнок будет выступать на настоящей сцене.' },
-        { property: 'og:type', content: 'website' },
-        { property: 'og:url', content: 'https://zateinikiteatr.ru' },
-        { property: 'og:locale', content: 'ru_RU' },
-        { property: 'og:image', content: 'https://zateinikiteatr.online/wp-content/uploads/2024/10/18.webp' },
-    ],
-});
-
-const { data: media } = await useApi('/media/', { query: { per_page: 100 } });
+const { data: media } = await useApi<MediaItem[]>('/media/', { method: 'GET', query: { per_page: 100 } });
 const performances = computed(() => media.value?.filter((item) => item?.link?.includes('performances')));
 
 onMounted(() => {

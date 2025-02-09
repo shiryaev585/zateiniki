@@ -12,10 +12,7 @@
 </template>
 
 <script setup lang="ts">
-interface Teacher {
-    text: string;
-    image: string;
-}
+import { type Teacher } from '~/utils/types';
 
 defineProps<{
     teacher: Teacher[];

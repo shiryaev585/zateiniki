@@ -1,4 +1,6 @@
-export const useApi = (endpoint: string, opts: object) => {
+import { type UseFetchOptions } from 'nuxt/app';
+
+export const useApi = <T>(endpoint: string, opts?: UseFetchOptions<T>) => {
     const config = useRuntimeConfig();
 
     return useFetch(endpoint, {
