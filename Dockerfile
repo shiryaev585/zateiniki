@@ -2,14 +2,12 @@ FROM node:18-alpine as base
 
 WORKDIR /app
 
-COPY . .
+COPY package*.json ./
 
 RUN npm install
 
-ENV PORT 3000
+COPY . .
 
-EXPOSE $PORT
-
-VOLUME [ "/app/data" ]
+EXPOSE 3000
 
 CMD ["npm", "run", "dev"]
