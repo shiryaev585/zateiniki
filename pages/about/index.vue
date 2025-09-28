@@ -3,16 +3,21 @@
         <intro-block title="О нас" src="/images/index/intro_1.webp" class="block" />
         <div class="block">
             <p
-                v-for="(inner, idx) in description"
-                :key="idx"
                 v-observe
                 class="description container my-2 color-light-grey anim-appear"
             >
-                {{ inner }}
+                Театр&nbsp;&mdash; важнейшее средство приобщения ребенка к&nbsp;духовным ценностям через собственный внутренний опыт, через личные переживания.
+            </p>
+
+            <p
+                v-observe
+                class="description container my-2 color-light-grey anim-appear"
+            >
+                Театральное искусство, представляя собой синтез различных видов искусств (музыкального, хореографического, изобразительного, литературного) способствует формированию и&nbsp;развитию эстетической культуры личности ребёнка, предоставляет возможность раскрытия индивидуального творческого потенциала.
             </p>
         </div>
         <about-advantages class="advantages-block block" />
-        <about-info :teacher="teacher" class="block" />
+        <about-info class="block" />
         <content-block :content="diplomas" class="block" />
         <contact-block title="А ещё нам можно написать :)" light-bg class="block left-offset" />
         <photo-block :photos="charity" title="Благотворительность и волонтёрская деятельность" class="block" />
@@ -41,15 +46,6 @@ const head: MetaObject = {
 };
 
 useHead(head);
-
-interface AboutItem {
-    text: string;
-}
-
-const { data: about } = await useApi<AboutItem[]>('/about/', { method: 'GET' });
-const description = computed(() => about.value?.map((item) => item?.text).reverse());
-
-const { data: teacher } = await useApi<Teacher[]>('/teacher/', { method: 'GET' });
 
 const { data: media } = await useApi<ContentItem[]>('/media/', { method: 'GET', query: { per_page: 100 } });
 const charity = computed(() => media.value?.filter((item: ContentItem) => item?.link?.includes('charity')).reverse());
