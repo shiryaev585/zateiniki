@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /privacy
+
+Sitemap: https://zateinikiteatr.ru/sitemap.xml
