@@ -1,0 +1,37 @@
+name: Deploy to reg.ru
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Generate static site
+        run: bun run generate
+        env:
+          REQUEST_URL: ${{ secrets.REQUEST_URL }}
+          YMAP_KEY: ${{ secrets.YMAP_KEY }}
+          YMETRIKA_ID: ${{ secrets.YMETRIKA_ID }}
+
+      - name: Deploy via rsync over SSH
+        uses: burnett01/rsync-deployments@7.0.1
+        with:
+          switches: -avzr --delete
+          path: .output/public/
+          remote_path: ${{ secrets.SSH_REMOTE_PATH }}
+          remote_host: ${{ secrets.SSH_HOST }}
+          remote_user: ${{ secrets.SSH_USER }}
+          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}

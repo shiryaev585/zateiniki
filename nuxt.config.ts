@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+    compatibilityDate: '2025-07-15',
     devtools: { enabled: true },
     app: {
         head: {
@@ -9,12 +10,12 @@ export default defineNuxtConfig({
             ]
         },
     },
-    css: ['@/assets/style/main.scss'],
+    css: ['~/assets/style/main.scss'],
     vite: {
         css: {
             preprocessorOptions: {
                 scss: {
-                    additionalData: '@import "~/assets/style/shared/_variables.scss";@import "~/assets/style/shared/_mixins.scss";',
+                    additionalData: '@use "~/assets/style/shared/_variables.scss" as *; @use "~/assets/style/shared/_mixins.scss" as *;',
                 },
             },
         },
@@ -38,7 +39,6 @@ export default defineNuxtConfig({
     runtimeConfig: {
         public: {
             requestUrl: process.env.REQUEST_URL,
-            apiUrl: process.env.API_URL,
         }
     },
 });

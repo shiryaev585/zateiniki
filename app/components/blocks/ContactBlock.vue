@@ -26,7 +26,9 @@
                 class="form anim-appear delay-5"
                 @submit.prevent="submit"
             >
-                <h3 class="form__subtitle">Оставьте Ваши контакты и мы Вам перезвоним</h3>
+                <h3 class="form__subtitle">
+                    Оставьте Ваши контакты и мы Вам перезвоним
+                </h3>
                 <div class="inputs">
                     <ui-input
                         id="name"
@@ -56,7 +58,9 @@
                 />
             </form>
             <div v-else class="success">
-                <h3 class="success__subtitle">заявка принята</h3>
+                <h3 class="success__subtitle">
+                    заявка принята
+                </h3>
                 <span class="success__txt">Мы свяжемся с Вами в ближайшее время</span>
                 <ui-btn
                     label="Отправить ещё раз"
@@ -99,12 +103,12 @@ const submit = async () => {
     formData.append('phone', form?.phone);
     showPreloader.value = true;
     try {
-        const res = await useApi(config.public.requestUrl, {
+        const res = await fetch(config.public.requestUrl, {
             method: 'POST',
             body: formData,
             headers: { Accept: 'application/json' },
         });
-        if (res.data) {
+        if (res.ok) {
             success.value = true;
         }
         form.name = '';

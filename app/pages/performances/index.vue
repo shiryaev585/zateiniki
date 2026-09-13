@@ -2,13 +2,13 @@
     <div class="performances-page">
         <intro-block title="Спектакли" src="/images/index/intro_2.webp" class="block" />
         <content-block :content="videos" with-frame class="block" />
-        <photo-block :photos="performances" title="Наши выступления и репетиции" class="block" />
+        <!-- <photo-block :photos="performances" title="Наши выступления и репетиции" class="block" /> -->
     </div>
 </template>
 <script setup lang="ts">
 import type { MetaObject } from 'nuxt/schema';
 import { useFooterStore } from '~/stores/footer';
-import { IntroBlock, ContentBlock, PhotoBlock } from '~/components/blocks';
+import { IntroBlock, ContentBlock /* PhotoBlock */ } from '~/components/blocks';
 import { type ContentItem } from '~/utils/types';
 
 const head: MetaObject = {
@@ -45,8 +45,8 @@ const videos: ContentItem[] = [{
     alt_text: 'видео выступления'
 }];
 
-const { data: media } = await useApi<ContentItem[]>('/media/', { method: 'GET', query: { per_page: 100 } });
-const performances = computed(() => media.value?.filter((item: ContentItem) => item?.link?.includes('performances')));
+// const { data: media } = await useApi<ContentItem[]>('/media/', { method: 'GET', query: { per_page: 100 } });
+// const performances = computed(() => media.value?.filter((item: ContentItem) => item?.link?.includes('performances')));
 
 onMounted(() => {
     footerStore.setFooter(true);

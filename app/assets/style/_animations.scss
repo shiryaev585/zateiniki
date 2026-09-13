@@ -1,3 +1,5 @@
+@use './shared/_variables.scss' as *;
+
 .anim-left {
     &.anim-inner {
         transform: translateX(-200%);

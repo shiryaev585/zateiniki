@@ -1,13 +1,15 @@
-FROM node:18-alpine as base
+FROM node:24.19.0-alpine as base
+
+RUN npm install -g bun
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY package*.json bun.lock ./
 
-RUN npm install
+RUN bun install
 
 COPY . .
 
 EXPOSE 3000
 
-CMD ["npm", "run", "dev"]
+CMD ["bun", "dev"]
