@@ -1,3 +1,6 @@
+@use './shared/_variables.scss' as *;
+@use './shared/_mixins.scss' as *;
+
 html {
     height: 100%;
     font-size: .727276vw;

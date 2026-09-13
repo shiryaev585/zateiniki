@@ -9,29 +9,27 @@
     "postinstall": "nuxt prepare",
     "analyze": "nuxt build --modern=client --analyze"
   },
-  "devDependencies": {
-    "@nuxt/image": "^1.6.0",
-    "@types/node": "^18",
-    "@typescript-eslint/eslint-plugin": "^5.59.5",
-    "@typescript-eslint/parser": "^5.59.5",
-    "@vue/eslint-config-standard": "^8.0.1",
-    "eslint": "^8.40.0",
-    "eslint-plugin-nuxt": "^4.0.0",
-    "eslint-plugin-vue": "^9.11.1",
-    "nuxt": "^3.7.0",
-    "sass": "^1.62.1",
-    "sass-loader": "^13.2.2"
-  },
   "dependencies": {
-    "@nuxt/schema": "^3.15.4",
-    "@pinia/nuxt": "^0.5.1",
-    "maska": "^2.1.11",
-    "pinia": "^2.1.7",
+    "@pinia/nuxt": "1.0.2",
+    "maska": "3.2.1",
+    "nuxt": "4.5.2",
+    "pinia": "4.0.3",
     "swiper": "^10.3.0",
-    "vue-yandex-maps": "^2.1.4",
-    "yandex-metrika-module-nuxt3": "^1.5.3"
+    "vue": "3.5.42",
+    "vue-router": "5.3.1",
+    "vue-yandex-maps": "3.0.4",
+    "yandex-metrika-module-nuxt3": "1.5.3"
   },
-  "overrides": {
-    "vue": "latest"
+  "devDependencies": {
+    "@nuxt/image": "2.1.0",
+    "@nuxt/schema": "4.5.2",
+    "@types/node": "26.5.1",
+    "@typescript-eslint/eslint-plugin": "8.70.0",
+    "@typescript-eslint/parser": "8.70.0",
+    "@vue/eslint-config-standard": "9.0.1",
+    "eslint": "10.10.0",
+    "eslint-plugin-nuxt": "4.0.0",
+    "eslint-plugin-vue": "10.11.0",
+    "sass-embedded": "1.104.1"
   }
 }

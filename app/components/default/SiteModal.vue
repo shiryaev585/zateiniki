@@ -53,12 +53,12 @@ const submit = async () => {
     formData.append('name', form?.name);
     formData.append('phone', form?.phone);
     try {
-        const res = await useApi(config.public.requestUrl, {
+        const res = await fetch(config.public.requestUrl, {
             method: 'POST',
             body: formData,
             headers: { Accept: 'application/json' },
         });
-        if (res.data) {
+        if (res.ok) {
             globalStore.toggleModal(false);
         }
         form.name = '';

@@ -18,17 +18,17 @@
         </div>
         <about-advantages class="advantages-block block" />
         <about-info class="block" />
-        <content-block :content="diplomas" class="block" />
+        <!-- <content-block :content="diplomas" class="block" /> -->
         <contact-block title="А ещё нам можно написать :)" light-bg class="block left-offset" />
-        <photo-block :photos="charity" title="Благотворительность и волонтёрская деятельность" class="block" />
+        <!-- <photo-block :photos="charity" title="Благотворительность и волонтёрская деятельность" class="block" /> -->
     </div>
 </template>
 
 <script setup lang="ts">
 import type { MetaObject } from 'nuxt/schema';
 import { useFooterStore } from '~/stores/footer';
-import { type ContentItem, type Teacher } from '~/utils/types';
-import { IntroBlock, ContentBlock, ContactBlock, PhotoBlock } from '~/components/blocks';
+// import { type ContentItem, type Teacher } from '~/utils/types';
+import { IntroBlock, /* ContentBlock,*/ ContactBlock/*, PhotoBlock*/ } from '~/components/blocks';
 
 const footerStore = useFooterStore();
 
@@ -47,9 +47,9 @@ const head: MetaObject = {
 
 useHead(head);
 
-const { data: media } = await useApi<ContentItem[]>('/media/', { method: 'GET', query: { per_page: 100 } });
-const charity = computed(() => media.value?.filter((item: ContentItem) => item?.link?.includes('charity')).reverse());
-const diplomas = computed(() => media.value?.filter((item: ContentItem) => item?.link?.includes('diplomas')).reverse());
+// const { data: media } = await useApi<ContentItem[]>('/media/', { method: 'GET', query: { per_page: 100 } });
+// const charity = computed(() => media.value?.filter((item: ContentItem) => item?.link?.includes('charity')).reverse());
+// const diplomas = computed(() => media.value?.filter((item: ContentItem) => item?.link?.includes('diplomas')).reverse());
 
 onMounted(() => {
     footerStore.setFooter(true);
